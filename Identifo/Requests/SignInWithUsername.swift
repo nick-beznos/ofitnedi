@@ -22,29 +22,37 @@
 //  SOFTWARE.
 //
 
-import XCTest
-@testable import IdentifoDemo
+import Foundation
 
-class IdentifoDemoTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+public struct SignInWithUsername: Request {
+    
+    public typealias Response = AuthResponse
+    
+    public var username: String
+    public var password: String
+    
+    public init(username: String, password: String) {
+        self.username = username
+        self.password = password
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+}
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+extension SignInWithUsername: Duality {
+    
+    init(_ dual: Data) throws {
+        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func dual() throws -> Data {
+        var json: [String: Any] = [:]
+        
+        json["username"] = username
+        json["password"] = password
+        json["scopes"] = ["offline"]
+        
+        let data = try Data(entityJSON: json)
+        return data
     }
-
+    
 }

@@ -22,29 +22,38 @@
 //  SOFTWARE.
 //
 
-import XCTest
-@testable import IdentifoDemo
+import Foundation
 
-class IdentifoDemoTests: XCTestCase {
+public struct Environment {
+    
+    public let apiURL: URL
+    public let clientID: String
+    public let secretKey: String
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    public init(apiURL: URL, clientID: String, secretKey: String) {
+        self.apiURL = apiURL
+        self.clientID = clientID
+        self.secretKey = secretKey
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+}
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+extension Environment {
+    
+    func apiURL(path: String, query: [String: String?] = [:]) -> URL {
+        var components = URLComponents(url: apiURL, resolvingAgainstBaseURL: true)!
+        components.path += path
+        
+        if !query.isEmpty {
+            components.queryItems = []
+            
+            for (name, value) in query {
+                let item = URLQueryItem(name: name, value: value)
+                components.queryItems?.append(item)
+            }
         }
+        
+        return components.url!
     }
-
+    
 }

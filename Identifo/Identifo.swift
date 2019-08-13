@@ -22,29 +22,34 @@
 //  SOFTWARE.
 //
 
-import XCTest
-@testable import IdentifoDemo
+import Foundation
 
-class IdentifoDemoTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+public final class Identifo {
+    
+    public var environment: Environment
+    public var session: Session
+    
+    private let mapper = Mapper()
+    
+    public init(environment: Environment, session: Session = URLSession.shared) {
+        self.environment = environment
+        self.session = session
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    public func send<T: Request>(_ request: T, completionHandler: @escaping (Result<T.Response>) -> Void) {
+        do {
+            let urlRequest = try makeURLRequest(from: request)
+            session.send(urlRequest) { response in
+                do {
+                    let result: T.Response = try self.mapper.entity(from: response)
+                    completionHandler(.success(result))
+                } catch let error {
+                    completionHandler(.failure(error))
+                }
+            }
+        } catch let error {
+            completionHandler(.failure(error))
         }
     }
-
+    
 }

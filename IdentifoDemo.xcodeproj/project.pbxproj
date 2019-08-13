@@ -7,15 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD1A85DF230306DC0091BC4F /* Identifo.h in Headers */ = {isa = PBXBuildFile; fileRef = CD1A85DD230306DC0091BC4F /* Identifo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD1A85E2230306DC0091BC4F /* Identifo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1A85DB230306DB0091BC4F /* Identifo.framework */; };
+		CD1A85E3230306DC0091BC4F /* Identifo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD1A85DB230306DB0091BC4F /* Identifo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CD1A85EA230307210091BC4F /* Identifo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85E9230307210091BC4F /* Identifo.swift */; };
+		CD1A85EC2303098C0091BC4F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EB2303098C0091BC4F /* Environment.swift */; };
+		CD1A85EF23031B3A0091BC4F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EE23031B3A0091BC4F /* Session.swift */; };
+		CD1A85F123031B9A0091BC4F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F023031B9A0091BC4F /* Task.swift */; };
+		CD1A85F323031ED90091BC4F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F223031ED90091BC4F /* Request.swift */; };
+		CD1A85F523031F7C0091BC4F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F423031F7C0091BC4F /* Result.swift */; };
+		CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */; };
+		CD1A85FD230329540091BC4F /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85FC230329540091BC4F /* AuthResponse.swift */; };
+		CD1A85FF230329AE0091BC4F /* Duality.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85FE230329AE0091BC4F /* Duality.swift */; };
+		CD1A860123032CBF0091BC4F /* URLRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */; };
+		CD1A860323032D310091BC4F /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860223032D310091BC4F /* Mapper.swift */; };
+		CD1A860523032D7C0091BC4F /* IdentifoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860423032D7C0091BC4F /* IdentifoError.swift */; };
+		CD1A860823032F820091BC4F /* DataJSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860723032F820091BC4F /* DataJSONExtension.swift */; };
 		CD82CFA1230304C600350012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFA0230304C600350012 /* AppDelegate.swift */; };
-		CD82CFA3230304C600350012 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFA2230304C600350012 /* ViewController.swift */; };
 		CD82CFA6230304C600350012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA4230304C600350012 /* Main.storyboard */; };
 		CD82CFA8230304C800350012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA7230304C800350012 /* Assets.xcassets */; };
 		CD82CFAB230304C800350012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA9230304C800350012 /* LaunchScreen.storyboard */; };
 		CD82CFB6230304C800350012 /* IdentifoDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFB5230304C800350012 /* IdentifoDemoTests.swift */; };
+		CD82CFC12303052B00350012 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFC02303052B00350012 /* InitialVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CD1A85E0230306DC0091BC4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD82CF95230304C600350012 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD1A85DA230306DB0091BC4F;
+			remoteInfo = Identifo;
+		};
 		CD82CFB2230304C800350012 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD82CF95230304C600350012 /* Project object */;
@@ -25,10 +48,39 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CD1A85E7230306DC0091BC4F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CD1A85E3230306DC0091BC4F /* Identifo.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		CD1A85DB230306DB0091BC4F /* Identifo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Identifo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD1A85DD230306DC0091BC4F /* Identifo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Identifo.h; sourceTree = "<group>"; };
+		CD1A85DE230306DC0091BC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD1A85E9230307210091BC4F /* Identifo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifo.swift; sourceTree = "<group>"; };
+		CD1A85EB2303098C0091BC4F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		CD1A85EE23031B3A0091BC4F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		CD1A85F023031B9A0091BC4F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CD1A85F223031ED90091BC4F /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		CD1A85F423031F7C0091BC4F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithUsername.swift; sourceTree = "<group>"; };
+		CD1A85FC230329540091BC4F /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		CD1A85FE230329AE0091BC4F /* Duality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duality.swift; sourceTree = "<group>"; };
+		CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestFactory.swift; sourceTree = "<group>"; };
+		CD1A860223032D310091BC4F /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		CD1A860423032D7C0091BC4F /* IdentifoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifoError.swift; sourceTree = "<group>"; };
+		CD1A860723032F820091BC4F /* DataJSONExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataJSONExtension.swift; sourceTree = "<group>"; };
 		CD82CF9D230304C600350012 /* IdentifoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentifoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD82CFA0230304C600350012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD82CFA2230304C600350012 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD82CFA5230304C600350012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD82CFA7230304C800350012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD82CFAA230304C800350012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,13 +88,22 @@
 		CD82CFB1230304C800350012 /* IdentifoDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentifoDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD82CFB5230304C800350012 /* IdentifoDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifoDemoTests.swift; sourceTree = "<group>"; };
 		CD82CFB7230304C800350012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD82CFC02303052B00350012 /* InitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CD1A85D8230306DB0091BC4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD82CF9A230304C600350012 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD1A85E2230306DC0091BC4F /* Identifo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,9 +117,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD1A85DC230306DC0091BC4F /* Identifo */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A860B230333150091BC4F /* Utility */,
+				CD1A85FB2303293D0091BC4F /* Responses */,
+				CD1A85F82303269B0091BC4F /* Requests */,
+				CD1A860C230333870091BC4F /* Components */,
+				CD1A860223032D310091BC4F /* Mapper.swift */,
+				CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */,
+				CD1A85E9230307210091BC4F /* Identifo.swift */,
+				CD1A85DD230306DC0091BC4F /* Identifo.h */,
+				CD1A85DE230306DC0091BC4F /* Info.plist */,
+			);
+			path = Identifo;
+			sourceTree = "<group>";
+		};
+		CD1A85F82303269B0091BC4F /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A85F223031ED90091BC4F /* Request.swift */,
+				CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		CD1A85FB2303293D0091BC4F /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A85FC230329540091BC4F /* AuthResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		CD1A860B230333150091BC4F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A85FE230329AE0091BC4F /* Duality.swift */,
+				CD1A860723032F820091BC4F /* DataJSONExtension.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		CD1A860C230333870091BC4F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A85EB2303098C0091BC4F /* Environment.swift */,
+				CD1A860423032D7C0091BC4F /* IdentifoError.swift */,
+				CD1A85F423031F7C0091BC4F /* Result.swift */,
+				CD1A85EE23031B3A0091BC4F /* Session.swift */,
+				CD1A85F023031B9A0091BC4F /* Task.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		CD82CF94230304C600350012 = {
 			isa = PBXGroup;
 			children = (
+				CD1A85DC230306DC0091BC4F /* Identifo */,
 				CD82CF9F230304C600350012 /* IdentifoDemo */,
 				CD82CFB4230304C800350012 /* IdentifoDemoTests */,
 				CD82CF9E230304C600350012 /* Products */,
@@ -70,6 +186,7 @@
 			children = (
 				CD82CF9D230304C600350012 /* IdentifoDemo.app */,
 				CD82CFB1230304C800350012 /* IdentifoDemoTests.xctest */,
+				CD1A85DB230306DB0091BC4F /* Identifo.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,8 +194,8 @@
 		CD82CF9F230304C600350012 /* IdentifoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				CD82CFC02303052B00350012 /* InitialVC.swift */,
 				CD82CFA0230304C600350012 /* AppDelegate.swift */,
-				CD82CFA2230304C600350012 /* ViewController.swift */,
 				CD82CFA4230304C600350012 /* Main.storyboard */,
 				CD82CFA7230304C800350012 /* Assets.xcassets */,
 				CD82CFA9230304C800350012 /* LaunchScreen.storyboard */,
@@ -98,7 +215,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		CD1A85D6230306DB0091BC4F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD1A85DF230306DC0091BC4F /* Identifo.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		CD1A85DA230306DB0091BC4F /* Identifo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD1A85E6230306DC0091BC4F /* Build configuration list for PBXNativeTarget "Identifo" */;
+			buildPhases = (
+				CD1A85D6230306DB0091BC4F /* Headers */,
+				CD1A85D7230306DB0091BC4F /* Sources */,
+				CD1A85D8230306DB0091BC4F /* Frameworks */,
+				CD1A85D9230306DB0091BC4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Identifo;
+			productName = Identifo;
+			productReference = CD1A85DB230306DB0091BC4F /* Identifo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		CD82CF9C230304C600350012 /* IdentifoDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD82CFBA230304C800350012 /* Build configuration list for PBXNativeTarget "IdentifoDemo" */;
@@ -106,10 +252,12 @@
 				CD82CF99230304C600350012 /* Sources */,
 				CD82CF9A230304C600350012 /* Frameworks */,
 				CD82CF9B230304C600350012 /* Resources */,
+				CD1A85E7230306DC0091BC4F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CD1A85E1230306DC0091BC4F /* PBXTargetDependency */,
 			);
 			name = IdentifoDemo;
 			productName = IdentifoDemo;
@@ -144,6 +292,10 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "MadAppGang Pty Ltd";
 				TargetAttributes = {
+					CD1A85DA230306DB0091BC4F = {
+						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
+					};
 					CD82CF9C230304C600350012 = {
 						CreatedOnToolsVersion = 10.3;
 					};
@@ -168,11 +320,19 @@
 			targets = (
 				CD82CF9C230304C600350012 /* IdentifoDemo */,
 				CD82CFB0230304C800350012 /* IdentifoDemoTests */,
+				CD1A85DA230306DB0091BC4F /* Identifo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CD1A85D9230306DB0091BC4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD82CF9B230304C600350012 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -193,11 +353,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CD1A85D7230306DB0091BC4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD1A85F523031F7C0091BC4F /* Result.swift in Sources */,
+				CD1A85F123031B9A0091BC4F /* Task.swift in Sources */,
+				CD1A860523032D7C0091BC4F /* IdentifoError.swift in Sources */,
+				CD1A860823032F820091BC4F /* DataJSONExtension.swift in Sources */,
+				CD1A860123032CBF0091BC4F /* URLRequestFactory.swift in Sources */,
+				CD1A85EA230307210091BC4F /* Identifo.swift in Sources */,
+				CD1A860323032D310091BC4F /* Mapper.swift in Sources */,
+				CD1A85FF230329AE0091BC4F /* Duality.swift in Sources */,
+				CD1A85F323031ED90091BC4F /* Request.swift in Sources */,
+				CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */,
+				CD1A85EC2303098C0091BC4F /* Environment.swift in Sources */,
+				CD1A85FD230329540091BC4F /* AuthResponse.swift in Sources */,
+				CD1A85EF23031B3A0091BC4F /* Session.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD82CF99230304C600350012 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD82CFA3230304C600350012 /* ViewController.swift in Sources */,
+				CD82CFC12303052B00350012 /* InitialVC.swift in Sources */,
 				CD82CFA1230304C600350012 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +393,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CD1A85E1230306DC0091BC4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD1A85DA230306DB0091BC4F /* Identifo */;
+			targetProxy = CD1A85E0230306DC0091BC4F /* PBXContainerItemProxy */;
+		};
 		CD82CFB3230304C800350012 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CD82CF9C230304C600350012 /* IdentifoDemo */;
@@ -240,6 +425,65 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CD1A85E4230306DC0091BC4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = E85N35G3YB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Identifo/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.madappgang.Identifo;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CD1A85E5230306DC0091BC4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = E85N35G3YB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Identifo/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.madappgang.Identifo;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		CD82CFB8230304C800350012 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -291,7 +535,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -346,7 +590,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -359,6 +603,7 @@
 		CD82CFBB230304C800350012 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E85N35G3YB;
@@ -377,6 +622,7 @@
 		CD82CFBC230304C800350012 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E85N35G3YB;
@@ -437,6 +683,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CD1A85E6230306DC0091BC4F /* Build configuration list for PBXNativeTarget "Identifo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD1A85E4230306DC0091BC4F /* Debug */,
+				CD1A85E5230306DC0091BC4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CD82CF98230304C600350012 /* Build configuration list for PBXProject "IdentifoDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
