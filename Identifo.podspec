@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "Identifo"
-  spec.version      = "0.1"
+  spec.version      = "0.1.0"
   spec.summary      = "Identifo API for iOS."
 
   # This description is used to generate tags and improve search results.
