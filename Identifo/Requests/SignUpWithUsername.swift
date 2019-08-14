@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -24,32 +24,35 @@
 
 import Foundation
 
-public final class Identifo {
+public struct SignUpWithUsername: Request {
     
-    public var environment: Environment
-    public var session: Session
+    public typealias Response = AuthResponse
     
-    private let mapper = Mapper()
+    public var username: String
+    public var password: String
     
-    public init(environment: Environment, session: Session = URLSession.shared) {
-        self.environment = environment
-        self.session = session
+    public init(username: String, password: String) {
+        self.username = username
+        self.password = password
     }
     
-    public func send<T: Request>(_ request: T, completionHandler: @escaping (Result<T.Response>) -> Void) {
-        do {
-            let urlRequest = try makeURLRequest(from: request)
-            session.send(urlRequest) { response in
-                do {
-                    let result: T.Response = try self.mapper.entity(from: response)
-                    completionHandler(.success(result))
-                } catch let error {
-                    completionHandler(.failure(error))
-                }
-            }
-        } catch let error {
-            completionHandler(.failure(error))
-        }
+}
+
+extension SignUpWithUsername: Duality {
+    
+    init(_ dual: Data) throws {
+        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    }
+    
+    func dual() throws -> Data {
+        var json: [String: Any] = [:]
+        
+        json["username"] = username
+        json["password"] = password
+        json["scopes"] = ["offline"]
+        
+        let data = try Data(entityJSON: json)
+        return data
     }
     
 }

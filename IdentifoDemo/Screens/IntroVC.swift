@@ -22,28 +22,37 @@
 //  SOFTWARE.
 //
 
-import Foundation
+import UIKit
+import Identifo
 
-public typealias Response = (data: Data?, meta: URLResponse?, error: Error?)
+final class IntroVC: UITableViewController {
 
-public protocol Session {
-    
-    @discardableResult
-    func send(_ request: URLRequest, completionHandler: @escaping (Response) -> Void) -> Task
-    
-}
+    var identifo: Manager!
 
-extension URLSession: Session {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
     
-    @discardableResult
-    public func send(_ request: URLRequest, completionHandler: @escaping (Response) -> Void) -> Task {
-        let task = dataTask(with: request) { data, response, error in
-            completionHandler((data, response, error))
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case (let controller as SignInWithUsernameVC):
+            controller.identifo = identifo
+        case (let controller as SignUpWithUsernameVC):
+            controller.identifo = identifo
+        default:
+            break
         }
-        
-        task.resume()
-        
-        return task
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        switch <#value#> {
+//        case <#pattern#>:
+//            <#code#>
+//        default:
+//            <#code#>
+//        }
     }
     
 }

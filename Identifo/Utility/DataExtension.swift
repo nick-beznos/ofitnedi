@@ -23,41 +23,38 @@
 //
 
 import Foundation
+import CommonCrypto
 
-public struct Environment {
+extension Data {
     
-    public let apiURL: URL
-    public let clientID: String
-    public let secretKey: String
-
-    public var deviceToken: String?
-    public var accessToken: String?
-    public var refreshToken: String?
-    
-    public init(apiURL: URL, clientID: String, secretKey: String) {
-        self.apiURL = apiURL
-        self.clientID = clientID
-        self.secretKey = secretKey
+    init(entityJSON: [String: Any]) throws {
+        self = try JSONSerialization.data(withJSONObject: entityJSON, options: .sortedKeys)
     }
-
+    
+    func entityJSON() throws -> [String: Any] {
+        let json = try JSONSerialization.jsonObject(with: self, options: .allowFragments)
+        
+        if let json = json as? [String: Any] {
+            return json
+        } else {
+            throw IdentifoError.unexpectedResponse(context: IdentifoError.defaultContext(entity: [String: Any].self, file: #file, line: #line))
+        }
+    }
+    
 }
 
-extension Environment {
+extension Data {
     
-    func apiURL(path: String, query: [String: String?] = [:]) -> URL {
-        var components = URLComponents(url: apiURL, resolvingAgainstBaseURL: true)!
-        components.path += path
+    static func makeHMACUsingSHA256(key: String, data: Data) -> Data {
+        let data = String(bytes: data, encoding: .utf8) ?? ""
+        return makeHMACUsingSHA256(key: key, data: data)
+    }
+    
+    static func makeHMACUsingSHA256(key: String, data: String) -> Data {
+        var bytes = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA256), key, key.count, data, data.count, &bytes)
         
-        if !query.isEmpty {
-            components.queryItems = []
-            
-            for (name, value) in query {
-                let item = URLQueryItem(name: name, value: value)
-                components.queryItems?.append(item)
-            }
-        }
-        
-        return components.url!
+        return Data(bytes)
     }
     
 }

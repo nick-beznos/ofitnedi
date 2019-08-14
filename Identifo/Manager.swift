@@ -24,40 +24,32 @@
 
 import Foundation
 
-public struct Environment {
+public final class Manager {
     
-    public let apiURL: URL
-    public let clientID: String
-    public let secretKey: String
-
-    public var deviceToken: String?
-    public var accessToken: String?
-    public var refreshToken: String?
+    public var environment: Environment
+    public var session: Session
     
-    public init(apiURL: URL, clientID: String, secretKey: String) {
-        self.apiURL = apiURL
-        self.clientID = clientID
-        self.secretKey = secretKey
+    let mapper = Mapper()
+    
+    public init(environment: Environment, session: Session = URLSession(configuration: .ephemeral)) {
+        self.environment = environment
+        self.session = session
     }
-
-}
-
-extension Environment {
     
-    func apiURL(path: String, query: [String: String?] = [:]) -> URL {
-        var components = URLComponents(url: apiURL, resolvingAgainstBaseURL: true)!
-        components.path += path
-        
-        if !query.isEmpty {
-            components.queryItems = []
-            
-            for (name, value) in query {
-                let item = URLQueryItem(name: name, value: value)
-                components.queryItems?.append(item)
+    public func send<T: Request>(_ request: T, completionHandler: @escaping (Result<T.Response>) -> Void) {
+        do {
+            let urlRequest = try makeURLRequest(from: request)
+            session.send(urlRequest) { response in
+                do {
+                    let result: T.Response = try self.mapper.entity(from: response)
+                    completionHandler(.success(result))
+                } catch let error {
+                    completionHandler(.failure(error))
+                }
             }
+        } catch let error {
+            completionHandler(.failure(error))
         }
-        
-        return components.url!
     }
     
 }

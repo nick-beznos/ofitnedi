@@ -22,22 +22,28 @@
 //  SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-extension Data {
+public protocol AlertableViewController {
     
-    init(entityJSON: [String: Any]) throws {
-        self = try JSONSerialization.data(withJSONObject: entityJSON, options: .sortedKeys)
+}
+
+extension AlertableViewController where Self: UIViewController {
+    
+    public func showMessage(_ message: String, handler: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        alert.view.tintColor = .black
+        
+        let action = UIAlertAction(title: "Close", style: .cancel) { _ in
+            handler?()
+        }
+        alert.addAction(action)
+        
+        present(alert, animated: true)
     }
     
-    func entityJSON() throws -> [String: Any] {
-        let json = try JSONSerialization.jsonObject(with: self, options: .allowFragments)
-        
-        if let json = json as? [String: Any] {
-            return json
-        } else {
-            throw IdentifoError.unexpectedResponse(context: IdentifoError.defaultContext(entity: [String: Any].self, file: #file, line: #line))
-        }
+    public func showErrorMessage(_ error: Error, handler: (() -> Void)? = nil) {
+        showMessage("\(error)", handler: handler)
     }
     
 }

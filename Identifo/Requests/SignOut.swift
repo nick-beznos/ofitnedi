@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -22,14 +22,36 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-class InitialVC: UIViewController {
+public struct SignOut: Request {
+    
+    public typealias Response = Void
+    
+    public let deviceToken: String?
+    public let refreshToken: String?
+    
+    public init(deviceToken: String? = nil, refreshToken: String? = nil) {
+        self.deviceToken = deviceToken
+        self.refreshToken = refreshToken
+    }
+    
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+extension SignOut: Duality {
+    
+    init(_ dual: Data) throws {
+        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    }
+    
+    func dual() throws -> Data {
+        var json: [String: Any] = [:]
+        
+        json["device_token"] = deviceToken
+        json["refresh_token"] = refreshToken
+        
+        let data = try Data(entityJSON: json)
+        return data
     }
     
 }

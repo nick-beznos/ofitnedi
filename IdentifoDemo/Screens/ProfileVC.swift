@@ -22,42 +22,45 @@
 //  SOFTWARE.
 //
 
-import Foundation
+import UIKit
+import Identifo
 
-public struct Environment {
+final class ProfileVC: UIViewController, AlertableViewController {
+
+    @IBOutlet private var signOutButton: UIButton!
     
-    public let apiURL: URL
-    public let clientID: String
-    public let secretKey: String
-
-    public var deviceToken: String?
-    public var accessToken: String?
-    public var refreshToken: String?
+    var identifo: Identifo.Manager!
     
-    public init(apiURL: URL, clientID: String, secretKey: String) {
-        self.apiURL = apiURL
-        self.clientID = clientID
-        self.secretKey = secretKey
-    }
-
-}
-
-extension Environment {
-    
-    func apiURL(path: String, query: [String: String?] = [:]) -> URL {
-        var components = URLComponents(url: apiURL, resolvingAgainstBaseURL: true)!
-        components.path += path
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        if !query.isEmpty {
-            components.queryItems = []
-            
-            for (name, value) in query {
-                let item = URLQueryItem(name: name, value: value)
-                components.queryItems?.append(item)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "unwindToInitialVC":
+            let controller = segue.destination as! InitialVC
+            controller.identifo = identifo
+        default:
+            break
+        }
+    }
+    
+    @IBAction private func signOutButtonButtonPressed(_ sender: UIButton) {
+        let request = SignOut(deviceToken: identifo.environment.deviceToken, refreshToken: identifo.environment.refreshToken)
+        
+        identifo.send(request) { result in
+            do {
+                try result.get()
+                self.identifo.environment.accessToken = nil
+                self.identifo.environment.refreshToken = nil
+                
+                self.performSegue(withIdentifier: "unwindToInitialVC", sender: self)
+            } catch let error {
+                self.showErrorMessage(error)
             }
         }
-        
-        return components.url!
     }
-    
+
 }

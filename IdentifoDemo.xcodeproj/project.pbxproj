@@ -10,10 +10,9 @@
 		CD1A85DF230306DC0091BC4F /* Identifo.h in Headers */ = {isa = PBXBuildFile; fileRef = CD1A85DD230306DC0091BC4F /* Identifo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD1A85E2230306DC0091BC4F /* Identifo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1A85DB230306DB0091BC4F /* Identifo.framework */; };
 		CD1A85E3230306DC0091BC4F /* Identifo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD1A85DB230306DB0091BC4F /* Identifo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD1A85EA230307210091BC4F /* Identifo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85E9230307210091BC4F /* Identifo.swift */; };
+		CD1A85EA230307210091BC4F /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85E9230307210091BC4F /* Manager.swift */; };
 		CD1A85EC2303098C0091BC4F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EB2303098C0091BC4F /* Environment.swift */; };
-		CD1A85EF23031B3A0091BC4F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EE23031B3A0091BC4F /* Session.swift */; };
-		CD1A85F123031B9A0091BC4F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F023031B9A0091BC4F /* Task.swift */; };
+		CD1A85EF23031B3A0091BC4F /* Session & Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EE23031B3A0091BC4F /* Session & Task.swift */; };
 		CD1A85F323031ED90091BC4F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F223031ED90091BC4F /* Request.swift */; };
 		CD1A85F523031F7C0091BC4F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F423031F7C0091BC4F /* Result.swift */; };
 		CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */; };
@@ -22,7 +21,15 @@
 		CD1A860123032CBF0091BC4F /* URLRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */; };
 		CD1A860323032D310091BC4F /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860223032D310091BC4F /* Mapper.swift */; };
 		CD1A860523032D7C0091BC4F /* IdentifoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860423032D7C0091BC4F /* IdentifoError.swift */; };
-		CD1A860823032F820091BC4F /* DataJSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860723032F820091BC4F /* DataJSONExtension.swift */; };
+		CD1A860823032F820091BC4F /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860723032F820091BC4F /* DataExtension.swift */; };
+		CD1A8617230368940091BC4F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A8616230368940091BC4F /* ProfileVC.swift */; };
+		CD1A8619230378E00091BC4F /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A8618230378E00091BC4F /* IntroVC.swift */; };
+		CD1A861B230379330091BC4F /* SignInWithUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A861A230379330091BC4F /* SignInWithUsernameVC.swift */; };
+		CD1A861D23037A0F0091BC4F /* SignUpWithUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A861C23037A0F0091BC4F /* SignUpWithUsernameVC.swift */; };
+		CD1A861E23037D9D0091BC4F /* app_config.json in Resources */ = {isa = PBXBuildFile; fileRef = CD1A860D2303372F0091BC4F /* app_config.json */; };
+		CD1A862123037E430091BC4F /* AlertableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A862023037E430091BC4F /* AlertableViewController.swift */; };
+		CD1A862923038CC90091BC4F /* SignUpWithUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */; };
+		CD79818C2304385A0067641E /* SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD79818B2304385A0067641E /* SignOut.swift */; };
 		CD82CFA1230304C600350012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFA0230304C600350012 /* AppDelegate.swift */; };
 		CD82CFA6230304C600350012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA4230304C600350012 /* Main.storyboard */; };
 		CD82CFA8230304C800350012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA7230304C800350012 /* Assets.xcassets */; };
@@ -66,10 +73,9 @@
 		CD1A85DB230306DB0091BC4F /* Identifo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Identifo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD1A85DD230306DC0091BC4F /* Identifo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Identifo.h; sourceTree = "<group>"; };
 		CD1A85DE230306DC0091BC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD1A85E9230307210091BC4F /* Identifo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifo.swift; sourceTree = "<group>"; };
+		CD1A85E9230307210091BC4F /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		CD1A85EB2303098C0091BC4F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		CD1A85EE23031B3A0091BC4F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		CD1A85F023031B9A0091BC4F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CD1A85EE23031B3A0091BC4F /* Session & Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session & Task.swift"; sourceTree = "<group>"; };
 		CD1A85F223031ED90091BC4F /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		CD1A85F423031F7C0091BC4F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithUsername.swift; sourceTree = "<group>"; };
@@ -78,7 +84,16 @@
 		CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestFactory.swift; sourceTree = "<group>"; };
 		CD1A860223032D310091BC4F /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		CD1A860423032D7C0091BC4F /* IdentifoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifoError.swift; sourceTree = "<group>"; };
-		CD1A860723032F820091BC4F /* DataJSONExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataJSONExtension.swift; sourceTree = "<group>"; };
+		CD1A860723032F820091BC4F /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		CD1A860D2303372F0091BC4F /* app_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = app_config.json; sourceTree = "<group>"; };
+		CD1A860E2303372F0091BC4F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CD1A8616230368940091BC4F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		CD1A8618230378E00091BC4F /* IntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
+		CD1A861A230379330091BC4F /* SignInWithUsernameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithUsernameVC.swift; sourceTree = "<group>"; };
+		CD1A861C23037A0F0091BC4F /* SignUpWithUsernameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithUsernameVC.swift; sourceTree = "<group>"; };
+		CD1A862023037E430091BC4F /* AlertableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertableViewController.swift; sourceTree = "<group>"; };
+		CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithUsername.swift; sourceTree = "<group>"; };
+		CD79818B2304385A0067641E /* SignOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOut.swift; sourceTree = "<group>"; };
 		CD82CF9D230304C600350012 /* IdentifoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentifoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD82CFA0230304C600350012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD82CFA5230304C600350012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,7 +141,7 @@
 				CD1A860C230333870091BC4F /* Components */,
 				CD1A860223032D310091BC4F /* Mapper.swift */,
 				CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */,
-				CD1A85E9230307210091BC4F /* Identifo.swift */,
+				CD1A85E9230307210091BC4F /* Manager.swift */,
 				CD1A85DD230306DC0091BC4F /* Identifo.h */,
 				CD1A85DE230306DC0091BC4F /* Info.plist */,
 			);
@@ -138,6 +153,8 @@
 			children = (
 				CD1A85F223031ED90091BC4F /* Request.swift */,
 				CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */,
+				CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */,
+				CD79818B2304385A0067641E /* SignOut.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -154,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				CD1A85FE230329AE0091BC4F /* Duality.swift */,
-				CD1A860723032F820091BC4F /* DataJSONExtension.swift */,
+				CD1A860723032F820091BC4F /* DataExtension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -165,10 +182,29 @@
 				CD1A85EB2303098C0091BC4F /* Environment.swift */,
 				CD1A860423032D7C0091BC4F /* IdentifoError.swift */,
 				CD1A85F423031F7C0091BC4F /* Result.swift */,
-				CD1A85EE23031B3A0091BC4F /* Session.swift */,
-				CD1A85F023031B9A0091BC4F /* Task.swift */,
+				CD1A85EE23031B3A0091BC4F /* Session & Task.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		CD1A8613230368390091BC4F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CD82CFC02303052B00350012 /* InitialVC.swift */,
+				CD1A8618230378E00091BC4F /* IntroVC.swift */,
+				CD1A861A230379330091BC4F /* SignInWithUsernameVC.swift */,
+				CD1A861C23037A0F0091BC4F /* SignUpWithUsernameVC.swift */,
+				CD1A8616230368940091BC4F /* ProfileVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		CD1A861F23037E250091BC4F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A862023037E430091BC4F /* AlertableViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CD82CF94230304C600350012 = {
@@ -178,6 +214,8 @@
 				CD82CF9F230304C600350012 /* IdentifoDemo */,
 				CD82CFB4230304C800350012 /* IdentifoDemoTests */,
 				CD82CF9E230304C600350012 /* Products */,
+				CD1A860D2303372F0091BC4F /* app_config.json */,
+				CD1A860E2303372F0091BC4F /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,7 +232,8 @@
 		CD82CF9F230304C600350012 /* IdentifoDemo */ = {
 			isa = PBXGroup;
 			children = (
-				CD82CFC02303052B00350012 /* InitialVC.swift */,
+				CD1A861F23037E250091BC4F /* Extensions */,
+				CD1A8613230368390091BC4F /* Screens */,
 				CD82CFA0230304C600350012 /* AppDelegate.swift */,
 				CD82CFA4230304C600350012 /* Main.storyboard */,
 				CD82CFA7230304C800350012 /* Assets.xcassets */,
@@ -338,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD82CFAB230304C800350012 /* LaunchScreen.storyboard in Resources */,
+				CD1A861E23037D9D0091BC4F /* app_config.json in Resources */,
 				CD82CFA8230304C800350012 /* Assets.xcassets in Resources */,
 				CD82CFA6230304C600350012 /* Main.storyboard in Resources */,
 			);
@@ -358,18 +398,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1A85F523031F7C0091BC4F /* Result.swift in Sources */,
-				CD1A85F123031B9A0091BC4F /* Task.swift in Sources */,
+				CD1A862923038CC90091BC4F /* SignUpWithUsername.swift in Sources */,
 				CD1A860523032D7C0091BC4F /* IdentifoError.swift in Sources */,
-				CD1A860823032F820091BC4F /* DataJSONExtension.swift in Sources */,
+				CD1A860823032F820091BC4F /* DataExtension.swift in Sources */,
 				CD1A860123032CBF0091BC4F /* URLRequestFactory.swift in Sources */,
-				CD1A85EA230307210091BC4F /* Identifo.swift in Sources */,
+				CD1A85EA230307210091BC4F /* Manager.swift in Sources */,
 				CD1A860323032D310091BC4F /* Mapper.swift in Sources */,
 				CD1A85FF230329AE0091BC4F /* Duality.swift in Sources */,
 				CD1A85F323031ED90091BC4F /* Request.swift in Sources */,
 				CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */,
 				CD1A85EC2303098C0091BC4F /* Environment.swift in Sources */,
 				CD1A85FD230329540091BC4F /* AuthResponse.swift in Sources */,
-				CD1A85EF23031B3A0091BC4F /* Session.swift in Sources */,
+				CD1A85EF23031B3A0091BC4F /* Session & Task.swift in Sources */,
+				CD79818C2304385A0067641E /* SignOut.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +418,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD1A8617230368940091BC4F /* ProfileVC.swift in Sources */,
+				CD1A861D23037A0F0091BC4F /* SignUpWithUsernameVC.swift in Sources */,
+				CD1A8619230378E00091BC4F /* IntroVC.swift in Sources */,
 				CD82CFC12303052B00350012 /* InitialVC.swift in Sources */,
+				CD1A861B230379330091BC4F /* SignInWithUsernameVC.swift in Sources */,
+				CD1A862123037E430091BC4F /* AlertableViewController.swift in Sources */,
 				CD82CFA1230304C600350012 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

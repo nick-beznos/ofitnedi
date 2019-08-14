@@ -35,3 +35,25 @@ public struct AuthResponse {
     }
     
 }
+
+extension AuthResponse: Duality {
+    
+    init(_ dual: Data) throws {
+        let json = try dual.entityJSON()
+        
+        guard let accessToken = json["access_token"] as? String else {
+            throw IdentifoError.unexpectedResponse(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+        }
+        
+        guard let refreshToken = json["refresh_token"] as? String else {
+            throw IdentifoError.unexpectedResponse(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+        }
+        
+        self.init(accessToken: accessToken, refreshToken: refreshToken)
+    }
+    
+    func dual() throws -> Data {
+        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    }
+    
+}

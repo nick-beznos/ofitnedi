@@ -24,12 +24,79 @@
 
 import Foundation
 
-extension Identifo {
+extension Manager {
     
     func makeURLRequest(from request: AnyRequest) throws -> URLRequest {
-        let url = URL(string: "https://apple.com")!
-        let request = URLRequest(url: url)
-        return request
+        let url = try makeURL(for: request)
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = makeHTTPMethod(for: type(of: request))
+        urlRequest.allHTTPHeaderFields = try makeHTTPHeaderFields(for: request)
+        urlRequest.httpBody = try mapper.data(from: request)
+        
+        return urlRequest
+    }
+    
+}
+
+extension Manager {
+    
+    private func makeURL(for request: AnyRequest) throws -> URL {
+        var path = ""
+        
+        switch request {
+        case is SignInWithUsername:
+            path = "/auth/login"
+        case is SignUpWithUsername:
+            path = "/auth/register"
+        case is SignOut:
+            path = "/me/logout"
+        default:
+            throw IdentifoError.undefinedRequestFactory(context: IdentifoError.defaultContext(entity: type(of: request), file: #file, line: #line))
+        }
+        
+        return environment.apiURL(path: path, query: [:])
+    }
+    
+}
+
+extension Manager {
+    
+    private func makeHTTPHeaderFields(for request: AnyRequest) throws -> [String: String] {
+        var header: [String: String] = [:]
+
+        header["Content-Type"] = makeContentType(for: type(of: request))
+
+        switch request {
+        case is SignOut:
+            if let token = environment.accessToken {
+                header["Authorization"] = "Bearer \(token)"
+            }
+
+            fallthrough
+        default:
+            let data = try mapper.data(from: request)
+            let digest = Data.makeHMACUsingSHA256(key: environment.secretKey, data: data)
+
+            header["Digest"] = "SHA-256=" + digest.base64EncodedString()
+            header["X-Identifo-ClientID"] = environment.clientID
+        }
+        
+        return header
+    }
+
+    private func makeContentType(for requestType: AnyRequest.Type) -> String {
+        switch requestType {
+        default:
+            return "application/json"
+        }
+    }
+    
+    private func makeHTTPMethod(for requestType: AnyRequest.Type) -> String {
+        switch requestType {
+        default:
+            return "POST"
+        }
     }
     
 }

@@ -24,40 +24,36 @@
 
 import Foundation
 
-public struct Environment {
-    
-    public let apiURL: URL
-    public let clientID: String
-    public let secretKey: String
+public typealias Response = (data: Data?, meta: URLResponse?, error: Error?)
 
-    public var deviceToken: String?
-    public var accessToken: String?
-    public var refreshToken: String?
+public protocol Session {
     
-    public init(apiURL: URL, clientID: String, secretKey: String) {
-        self.apiURL = apiURL
-        self.clientID = clientID
-        self.secretKey = secretKey
-    }
-
+    @discardableResult
+    func send(_ request: URLRequest, completionHandler: @escaping (Response) -> Void) -> Task
+    
 }
 
-extension Environment {
+extension URLSession: Session {
     
-    func apiURL(path: String, query: [String: String?] = [:]) -> URL {
-        var components = URLComponents(url: apiURL, resolvingAgainstBaseURL: true)!
-        components.path += path
-        
-        if !query.isEmpty {
-            components.queryItems = []
-            
-            for (name, value) in query {
-                let item = URLQueryItem(name: name, value: value)
-                components.queryItems?.append(item)
-            }
+    @discardableResult
+    public func send(_ request: URLRequest, completionHandler: @escaping (Response) -> Void) -> Task {
+        let task = dataTask(with: request) { data, response, error in
+            completionHandler((data, response, error))
         }
         
-        return components.url!
+        task.resume()
+        
+        return task
     }
+    
+}
+
+public protocol Task: AnyObject {
+    
+    func cancel()
+    
+}
+
+extension URLSessionDataTask: Task {
     
 }

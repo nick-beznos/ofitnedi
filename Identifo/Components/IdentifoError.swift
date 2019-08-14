@@ -32,6 +32,8 @@ public enum IdentifoError: Error {
     case timeout
     case cancelled
     
+    case undefinedError(message: String)
+    
     case unexpectedResponse(context: String)
     case undefinedMapper(context: String)
     case undefinedRequestFactory(context: String)
@@ -54,6 +56,26 @@ public enum IdentifoError: Error {
     static func defaultContext(entity: Any.Type, file: String, line: Int) -> String {
         let file = (file as NSString).lastPathComponent
         return "\(entity) (\(file), line: \(line))"
+    }
+    
+}
+
+extension IdentifoError: Duality {
+    
+    init(_ dual: Data) throws {
+        let json = try dual.entityJSON()
+
+        let errorJSON = json["error"] as? [String: Any]
+        
+        guard let message = errorJSON?["detailed_message"] as? String else {
+            throw IdentifoError.unexpectedResponse(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+        }
+        
+        self = .undefinedError(message: message)
+    }
+    
+    func dual() throws -> Data {
+        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
     }
     
 }
