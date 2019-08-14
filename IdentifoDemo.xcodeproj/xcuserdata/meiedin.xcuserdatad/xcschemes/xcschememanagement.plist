@@ -9,7 +9,7 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>IdentifoDemo.xcscheme_^#shared#^_</key>
+		<key>IdentifoDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -17,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>CD1A85DA230306DB0091BC4F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CD82CF9C230304C600350012</key>
 		<dict>
 			<key>primary</key>
