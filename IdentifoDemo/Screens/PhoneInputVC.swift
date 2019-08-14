@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -22,34 +22,50 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import Foundation
 import Identifo
 
-final class IntroVC: UITableViewController {
-
-    var identifo: Manager!
-
+final class PhoneInputVC: UIViewController, AlertableViewController {
+    
+    @IBOutlet private var phoneField: UITextField!
+    @IBOutlet private var continueButton: UIButton!
+    
+    var identifo: Identifo.Manager!
+    
+    private var phone: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.destination {
-        case (let controller as SignInWithUsernameVC):
+        switch segue.identifier {
+        case "toVerificationCodeInputVC":
+            let controller = segue.destination as! VerificationCodeInputVC
             controller.identifo = identifo
-        case (let controller as SignUpWithUsernameVC):
-            controller.identifo = identifo
-        case (let controller as PhoneInputVC):
-            controller.identifo = identifo
+            controller.phone = phone
         default:
             break
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    @IBAction private func continueButtonPressed(_ sender: UIButton) {
+        let phone = phoneField.text ?? ""
         
+        let request = ContinueWithPhone(phone: phone)
+        
+        identifo.send(request) { result in
+            do {
+                try result.get()
+                self.phone = phone
+                
+                self.performSegue(withIdentifier: "toVerificationCodeInputVC", sender: self)
+            } catch let error {
+                self.showErrorMessage(error)
+            }
+        }
     }
     
 }

@@ -30,6 +30,10 @@
 		CD1A862123037E430091BC4F /* AlertableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A862023037E430091BC4F /* AlertableViewController.swift */; };
 		CD1A862923038CC90091BC4F /* SignUpWithUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */; };
 		CD79818C2304385A0067641E /* SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD79818B2304385A0067641E /* SignOut.swift */; };
+		CD79818E230441380067641E /* PhoneInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD79818D230441380067641E /* PhoneInputVC.swift */; };
+		CD798190230441760067641E /* VerificationCodeInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD79818F230441760067641E /* VerificationCodeInputVC.swift */; };
+		CD7981922304459F0067641E /* ContinueWithPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7981912304459F0067641E /* ContinueWithPhone.swift */; };
+		CD798194230446820067641E /* ContinueWithPhoneVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD798193230446820067641E /* ContinueWithPhoneVerification.swift */; };
 		CD82CFA1230304C600350012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFA0230304C600350012 /* AppDelegate.swift */; };
 		CD82CFA6230304C600350012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA4230304C600350012 /* Main.storyboard */; };
 		CD82CFA8230304C800350012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA7230304C800350012 /* Assets.xcassets */; };
@@ -94,6 +98,10 @@
 		CD1A862023037E430091BC4F /* AlertableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertableViewController.swift; sourceTree = "<group>"; };
 		CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithUsername.swift; sourceTree = "<group>"; };
 		CD79818B2304385A0067641E /* SignOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOut.swift; sourceTree = "<group>"; };
+		CD79818D230441380067641E /* PhoneInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInputVC.swift; sourceTree = "<group>"; };
+		CD79818F230441760067641E /* VerificationCodeInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeInputVC.swift; sourceTree = "<group>"; };
+		CD7981912304459F0067641E /* ContinueWithPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithPhone.swift; sourceTree = "<group>"; };
+		CD798193230446820067641E /* ContinueWithPhoneVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithPhoneVerification.swift; sourceTree = "<group>"; };
 		CD82CF9D230304C600350012 /* IdentifoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentifoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD82CFA0230304C600350012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD82CFA5230304C600350012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,6 +162,8 @@
 				CD1A85F223031ED90091BC4F /* Request.swift */,
 				CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */,
 				CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */,
+				CD7981912304459F0067641E /* ContinueWithPhone.swift */,
+				CD798193230446820067641E /* ContinueWithPhoneVerification.swift */,
 				CD79818B2304385A0067641E /* SignOut.swift */,
 			);
 			path = Requests;
@@ -194,6 +204,8 @@
 				CD1A8618230378E00091BC4F /* IntroVC.swift */,
 				CD1A861A230379330091BC4F /* SignInWithUsernameVC.swift */,
 				CD1A861C23037A0F0091BC4F /* SignUpWithUsernameVC.swift */,
+				CD79818D230441380067641E /* PhoneInputVC.swift */,
+				CD79818F230441760067641E /* VerificationCodeInputVC.swift */,
 				CD1A8616230368940091BC4F /* ProfileVC.swift */,
 			);
 			path = Screens;
@@ -400,6 +412,7 @@
 				CD1A85F523031F7C0091BC4F /* Result.swift in Sources */,
 				CD1A862923038CC90091BC4F /* SignUpWithUsername.swift in Sources */,
 				CD1A860523032D7C0091BC4F /* IdentifoError.swift in Sources */,
+				CD7981922304459F0067641E /* ContinueWithPhone.swift in Sources */,
 				CD1A860823032F820091BC4F /* DataExtension.swift in Sources */,
 				CD1A860123032CBF0091BC4F /* URLRequestFactory.swift in Sources */,
 				CD1A85EA230307210091BC4F /* Manager.swift in Sources */,
@@ -408,6 +421,7 @@
 				CD1A85F323031ED90091BC4F /* Request.swift in Sources */,
 				CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */,
 				CD1A85EC2303098C0091BC4F /* Environment.swift in Sources */,
+				CD798194230446820067641E /* ContinueWithPhoneVerification.swift in Sources */,
 				CD1A85FD230329540091BC4F /* AuthResponse.swift in Sources */,
 				CD1A85EF23031B3A0091BC4F /* Session & Task.swift in Sources */,
 				CD79818C2304385A0067641E /* SignOut.swift in Sources */,
@@ -421,7 +435,9 @@
 				CD1A8617230368940091BC4F /* ProfileVC.swift in Sources */,
 				CD1A861D23037A0F0091BC4F /* SignUpWithUsernameVC.swift in Sources */,
 				CD1A8619230378E00091BC4F /* IntroVC.swift in Sources */,
+				CD79818E230441380067641E /* PhoneInputVC.swift in Sources */,
 				CD82CFC12303052B00350012 /* InitialVC.swift in Sources */,
+				CD798190230441760067641E /* VerificationCodeInputVC.swift in Sources */,
 				CD1A861B230379330091BC4F /* SignInWithUsernameVC.swift in Sources */,
 				CD1A862123037E430091BC4F /* AlertableViewController.swift in Sources */,
 				CD82CFA1230304C600350012 /* AppDelegate.swift in Sources */,

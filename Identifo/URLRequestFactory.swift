@@ -49,6 +49,10 @@ extension Manager {
             path = "/auth/login"
         case is SignUpWithUsername:
             path = "/auth/register"
+        case is ContinueWithPhone:
+            path = "/auth/request_phone_code"
+        case is ContinueWithPhoneVerification:
+            path = "/auth/phone_login"
         case is SignOut:
             path = "/me/logout"
         default:

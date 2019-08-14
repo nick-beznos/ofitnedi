@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -22,34 +22,33 @@
 //  SOFTWARE.
 //
 
-import UIKit
-import Identifo
+import Foundation
 
-final class IntroVC: UITableViewController {
-
-    var identifo: Manager!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+public struct ContinueWithPhone: Request {
+    
+    public typealias Response = Void
+    
+    public var phone: String
+    
+    public init(phone: String) {
+        self.phone = phone
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.destination {
-        case (let controller as SignInWithUsernameVC):
-            controller.identifo = identifo
-        case (let controller as SignUpWithUsernameVC):
-            controller.identifo = identifo
-        case (let controller as PhoneInputVC):
-            controller.identifo = identifo
-        default:
-            break
-        }
+}
+
+extension ContinueWithPhone: Duality {
+    
+    init(_ dual: Data) throws {
+        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func dual() throws -> Data {
+        var json: [String: Any] = [:]
         
+        json["phone_number"] = phone
+        
+        let data = try Data(entityJSON: json)
+        return data
     }
     
 }

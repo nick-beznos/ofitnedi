@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -25,31 +25,46 @@
 import UIKit
 import Identifo
 
-final class IntroVC: UITableViewController {
+final class VerificationCodeInputVC: UIViewController, AlertableViewController {
 
-    var identifo: Manager!
-
+    @IBOutlet private var verificationCodeField: UITextField!
+    @IBOutlet private var continueButton: UIButton!
+    
+    var identifo: Identifo.Manager!
+    var phone: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.destination {
-        case (let controller as SignInWithUsernameVC):
-            controller.identifo = identifo
-        case (let controller as SignUpWithUsernameVC):
-            controller.identifo = identifo
-        case (let controller as PhoneInputVC):
+        switch segue.identifier {
+        case "unwindToInitialVC":
+            let controller = segue.destination as! InitialVC
             controller.identifo = identifo
         default:
             break
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    @IBAction private func continueButtonPressed(_ sender: UIButton) {
+        let verificationCode = verificationCodeField.text ?? ""
+
+        let request = ContinueWithPhoneVerification(phone: phone, verificationCode: verificationCode)
         
+        identifo.send(request) { result in
+            do {
+                let entity = try result.get()
+                self.identifo.environment.accessToken = entity.accessToken
+                self.identifo.environment.refreshToken = entity.refreshToken
+
+                self.performSegue(withIdentifier: "unwindToInitialVC", sender: self)
+            } catch let error {
+                self.showErrorMessage(error)
+            }
+        }
     }
-    
+
 }
