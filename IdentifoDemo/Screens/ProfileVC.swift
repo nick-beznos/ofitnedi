@@ -27,6 +27,8 @@ import Identifo
 
 final class ProfileVC: UIViewController, AlertableViewController {
 
+    @IBOutlet private var renewAccessTokenButton: UIButton!
+    @IBOutlet private var checkIfSignedInButton: UIButton!
     @IBOutlet private var signOutButton: UIButton!
     
     var identifo: Identifo.Manager!
@@ -44,6 +46,36 @@ final class ProfileVC: UIViewController, AlertableViewController {
             controller.identifo = identifo
         default:
             break
+        }
+    }
+    
+    @IBAction private func renewAccessTokenButtonPressed(_ sender: UIButton) {
+        let request = RenewAccessToken()
+        
+        identifo.send(request) { result in
+            do {
+                let entity = try result.get()
+                self.identifo.environment.accessToken = entity.accessToken
+                self.identifo.environment.refreshToken = entity.refreshToken
+
+                self.showMessage("Your access token is renewed. Have a nice day. ✨")
+            } catch let error {
+                self.showErrorMessage(error)
+            }
+        }
+    }
+    
+    @IBAction private func checkIfSignedInButtonPressed(_ sender: UIButton) {
+        let request = CheckIfSignedIn()
+        
+        identifo.send(request) { result in
+            do {
+                try result.get()
+                
+                self.showMessage("You are signed in. Have a nice day. ✨")
+            } catch let error {
+                self.showErrorMessage(error)
+            }
         }
     }
     

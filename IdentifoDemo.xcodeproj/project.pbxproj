@@ -40,6 +40,8 @@
 		CD82CFAB230304C800350012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA9230304C800350012 /* LaunchScreen.storyboard */; };
 		CD82CFB6230304C800350012 /* IdentifoDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFB5230304C800350012 /* IdentifoDemoTests.swift */; };
 		CD82CFC12303052B00350012 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFC02303052B00350012 /* InitialVC.swift */; };
+		CDDDF7762304C63800B3A2D6 /* CheckIfSignedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */; };
+		CDDDF7792304CF1400B3A2D6 /* RenewAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		CD82CFB5230304C800350012 /* IdentifoDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifoDemoTests.swift; sourceTree = "<group>"; };
 		CD82CFB7230304C800350012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD82CFC02303052B00350012 /* InitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
+		CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIfSignedIn.swift; sourceTree = "<group>"; };
+		CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewAccessToken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,8 @@
 				CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */,
 				CD7981912304459F0067641E /* ContinueWithPhone.swift */,
 				CD798193230446820067641E /* ContinueWithPhoneVerification.swift */,
+				CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */,
+				CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */,
 				CD79818B2304385A0067641E /* SignOut.swift */,
 			);
 			path = Requests;
@@ -415,12 +421,14 @@
 				CD7981922304459F0067641E /* ContinueWithPhone.swift in Sources */,
 				CD1A860823032F820091BC4F /* DataExtension.swift in Sources */,
 				CD1A860123032CBF0091BC4F /* URLRequestFactory.swift in Sources */,
+				CDDDF7762304C63800B3A2D6 /* CheckIfSignedIn.swift in Sources */,
 				CD1A85EA230307210091BC4F /* Manager.swift in Sources */,
 				CD1A860323032D310091BC4F /* Mapper.swift in Sources */,
 				CD1A85FF230329AE0091BC4F /* Duality.swift in Sources */,
 				CD1A85F323031ED90091BC4F /* Request.swift in Sources */,
 				CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */,
 				CD1A85EC2303098C0091BC4F /* Environment.swift in Sources */,
+				CDDDF7792304CF1400B3A2D6 /* RenewAccessToken.swift in Sources */,
 				CD798194230446820067641E /* ContinueWithPhoneVerification.swift in Sources */,
 				CD1A85FD230329540091BC4F /* AuthResponse.swift in Sources */,
 				CD1A85EF23031B3A0091BC4F /* Session & Task.swift in Sources */,

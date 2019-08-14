@@ -42,24 +42,29 @@ extension Manager {
 extension Manager {
     
     private func makeURL(for request: AnyRequest) throws -> URL {
-        var path = ""
-        
+        let path = try makePath(for: request)
+        return environment.apiURL(path: path, query: [:])
+    }
+    
+    private func makePath(for request: AnyRequest) throws -> String {
         switch request {
         case is SignInWithUsername:
-            path = "/auth/login"
+            return "/auth/login"
         case is SignUpWithUsername:
-            path = "/auth/register"
+            return "/auth/register"
         case is ContinueWithPhone:
-            path = "/auth/request_phone_code"
+            return "/auth/request_phone_code"
         case is ContinueWithPhoneVerification:
-            path = "/auth/phone_login"
+            return "/auth/phone_login"
+        case is CheckIfSignedIn:
+            return "/me"
+        case is RenewAccessToken:
+            return "/auth/token"
         case is SignOut:
-            path = "/me/logout"
+            return "/me/logout"
         default:
             throw IdentifoError.undefinedRequestFactory(context: IdentifoError.defaultContext(entity: type(of: request), file: #file, line: #line))
         }
-        
-        return environment.apiURL(path: path, query: [:])
     }
     
 }
@@ -68,23 +73,41 @@ extension Manager {
     
     private func makeHTTPHeaderFields(for request: AnyRequest) throws -> [String: String] {
         var header: [String: String] = [:]
-
+        
+        header["X-Identifo-ClientID"] = environment.clientID
         header["Content-Type"] = makeContentType(for: type(of: request))
 
+        let token: String?
+        
+        if request is RenewAccessToken {
+            token = environment.refreshToken
+        } else {
+            token = environment.accessToken
+        }
+        
+        if let token = token {
+            header["Authorization"] = "Bearer \(token)"
+        }
+        
+        let digest: Data
+        
         switch request {
-        case is SignOut:
-            if let token = environment.accessToken {
-                header["Authorization"] = "Bearer \(token)"
-            }
+        case is CheckIfSignedIn, is RenewAccessToken:
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            let timestamp = formatter.string(from: Date())
+            
+            header["X-Identifo-Timestamp"] = timestamp
 
-            fallthrough
+            let urlPath = try makePath(for: request)
+            let data = urlPath + timestamp
+            digest = .makeHMACUsingSHA256(key: environment.secretKey, data: data)
         default:
             let data = try mapper.data(from: request)
-            let digest = Data.makeHMACUsingSHA256(key: environment.secretKey, data: data)
-
-            header["Digest"] = "SHA-256=" + digest.base64EncodedString()
-            header["X-Identifo-ClientID"] = environment.clientID
+            digest = .makeHMACUsingSHA256(key: environment.secretKey, data: data)
         }
+
+        header["Digest"] = "SHA-256=" + digest.base64EncodedString()
         
         return header
     }
@@ -98,6 +121,8 @@ extension Manager {
     
     private func makeHTTPMethod(for requestType: AnyRequest.Type) -> String {
         switch requestType {
+        case is CheckIfSignedIn.Type:
+            return "GET"
         default:
             return "POST"
         }
