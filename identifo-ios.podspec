@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = "Identifo"
+  spec.name         = "identifo-ios"
   spec.version      = "0.1.0"
   spec.summary      = "Identifo API for iOS."
 
