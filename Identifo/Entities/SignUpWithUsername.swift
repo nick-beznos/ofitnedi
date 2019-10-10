@@ -24,34 +24,41 @@
 
 import Foundation
 
-public struct ContinueWithPhoneVerification: Request {
+public struct SignUpWithUsername {
+        
+    public var username: String
+    public var password: String
     
-    public typealias Response = AuthResponse
-    
-    public var phone: String
-    public var verificationCode: String
-    
-    public init(phone: String, verificationCode: String) {
-        self.phone = phone
-        self.verificationCode = verificationCode
+    public var scopes: [Scope] = [.offline]
+
+    public init(username: String, password: String) {
+        self.username = username
+        self.password = password
     }
     
 }
 
-extension ContinueWithPhoneVerification: Duality {
+extension SignUpWithUsername: IdentifoRequest, DefaultHeaderFields {
     
-    init(_ dual: Data) throws {
-        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/auth/register"
     }
     
-    func dual() throws -> Data {
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
         var json: [String: Any] = [:]
         
-        json["phone_number"] = phone
-        json["code"] = verificationCode
-        json["scopes"] = ["offline"]
-
-        let data = try Data(entityJSON: json)
+        json["username"] = username
+        json["password"] = password
+        json["scopes"] = scopes.map { $0.rawValue }
+        
+        let data = try? Data(json: json)
         return data
     }
     

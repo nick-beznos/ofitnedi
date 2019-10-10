@@ -24,36 +24,42 @@
 
 import Foundation
 
-public struct AuthResponse {
+public struct SignInWithUsername {
+        
+    public var username: String
+    public var password: String
     
-    public let accessToken: String
-    public let refreshToken: String
+    public var scopes: [Scope] = [.offline]
     
-    public init(accessToken: String, refreshToken: String) {
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
+    public init(username: String, password: String) {
+        self.username = username
+        self.password = password
     }
-    
+
 }
 
-extension AuthResponse: Duality {
+extension SignInWithUsername: IdentifoRequest, DefaultHeaderFields {
     
-    init(_ dual: Data) throws {
-        let json = try dual.entityJSON()
-        
-        guard let accessToken = json["access_token"] as? String else {
-            throw IdentifoError.unexpectedResponse(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
-        }
-        
-        guard let refreshToken = json["refresh_token"] as? String else {
-            throw IdentifoError.unexpectedResponse(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
-        }
-        
-        self.init(accessToken: accessToken, refreshToken: refreshToken)
+    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/auth/login"
     }
     
-    func dual() throws -> Data {
-        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
+        var json: [String: Any] = [:]
+        
+        json["username"] = username
+        json["password"] = password
+        json["scopes"] = scopes.map { $0.rawValue }
+        
+        let data = try? Data(json: json)
+        return data
     }
     
 }

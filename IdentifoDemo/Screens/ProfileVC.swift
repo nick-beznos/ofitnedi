@@ -55,8 +55,8 @@ final class ProfileVC: UIViewController, AlertableViewController {
         identifo.send(request) { result in
             do {
                 let entity = try result.get()
-                self.identifo.environment.accessToken = entity.accessToken
-                self.identifo.environment.refreshToken = entity.refreshToken
+                self.identifo.context.accessToken = entity.accessToken
+                self.identifo.context.refreshToken = entity.refreshToken
 
                 self.showMessage("Your access token is renewed. Have a nice day. ✨")
             } catch let error {
@@ -70,7 +70,7 @@ final class ProfileVC: UIViewController, AlertableViewController {
         
         identifo.send(request) { result in
             do {
-                try result.get()
+                _ = try result.get()
                 
                 self.showMessage("You are signed in. Have a nice day. ✨")
             } catch let error {
@@ -80,13 +80,13 @@ final class ProfileVC: UIViewController, AlertableViewController {
     }
     
     @IBAction private func signOutButtonButtonPressed(_ sender: UIButton) {
-        let request = SignOut(deviceToken: identifo.environment.deviceToken, refreshToken: identifo.environment.refreshToken)
+        let request = SignOut()
         
         identifo.send(request) { result in
             do {
-                try result.get()
-                self.identifo.environment.accessToken = nil
-                self.identifo.environment.refreshToken = nil
+                _ = try result.get()
+                self.identifo.context.accessToken = nil
+                self.identifo.context.refreshToken = nil
                 
                 self.performSegue(withIdentifier: "unwindToInitialVC", sender: self)
             } catch let error {

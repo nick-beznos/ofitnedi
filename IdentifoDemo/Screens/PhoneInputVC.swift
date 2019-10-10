@@ -58,7 +58,7 @@ final class PhoneInputVC: UIViewController, AlertableViewController {
         
         identifo.send(request) { result in
             do {
-                try result.get()
+                _ = try result.get()
                 self.phone = phone
                 
                 self.performSegue(withIdentifier: "toVerificationCodeInputVC", sender: self)

@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -24,35 +24,21 @@
 
 import Foundation
 
-public struct SignInWithUsername: Request {
-    
-    public typealias Response = AuthResponse
-    
-    public var username: String
-    public var password: String
-    
-    public init(username: String, password: String) {
-        self.username = username
-        self.password = password
+public struct CheckIfSignedIn {
+        
+    public init() {
+        
     }
-
+    
 }
 
-extension SignInWithUsername: Duality {
+extension CheckIfSignedIn: IdentifoRequest, DefaultHeaderFields {
     
-    init(_ dual: Data) throws {
-        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    public typealias IdentifoSuccess = EmptyIdentifoResponse
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/me"
     }
-    
-    func dual() throws -> Data {
-        var json: [String: Any] = [:]
         
-        json["username"] = username
-        json["password"] = password
-        json["scopes"] = ["offline"]
-        
-        let data = try Data(entityJSON: json)
-        return data
-    }
-    
 }

@@ -26,30 +26,37 @@ import Foundation
 
 public final class Manager {
     
-    public var environment: Environment
+    public var context: Context
     public var session: Session
-    
-    let mapper = Mapper()
-    
-    public init(environment: Environment, session: Session = URLSession(configuration: .ephemeral)) {
-        self.environment = environment
+        
+    public init(context: Context, session: Session = URLSession(configuration: .ephemeral)) {
+        self.context = context
         self.session = session
     }
     
-    public func send<T: Request>(_ request: T, completionHandler: @escaping (Result<T.Response>) -> Void) {
-        do {
-            let urlRequest = try makeURLRequest(from: request)
-            session.send(urlRequest) { response in
-                do {
-                    let result: T.Response = try self.mapper.entity(from: response)
-                    completionHandler(.success(result))
-                } catch let error {
-                    completionHandler(.failure(error))
+    @discardableResult
+    public func send<T: IdentifoRequest>(_ request: T, completionHandler: @escaping (Result<T.IdentifoSuccess, Error>) -> Void) -> Task {
+        let urlRequest = request.identifoRequest(in: context)
+        
+        return session.send(urlRequest) { response in
+            do {
+                if let error = response.error {
+                    throw error
                 }
+                
+                let data = response.data ?? Data()
+                let meta = response.meta as? HTTPURLResponse
+                
+                guard let statusCode = meta?.statusCode, statusCode < 400 else {
+                    let error = try T.IdentifoFailure(identifoBody: data, statusCode: meta?.statusCode ?? -1)
+                    throw error
+                }
+                
+                let networkResponse = try T.IdentifoSuccess(identifoBody: data)
+                completionHandler(.success(networkResponse))
+            } catch let error {
+                completionHandler(.failure(error))
             }
-        } catch let error {
-            completionHandler(.failure(error))
         }
     }
-    
 }

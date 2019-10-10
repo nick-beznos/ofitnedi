@@ -24,18 +24,40 @@
 
 import Foundation
 
-public enum Result<T> {
+public struct Context {
     
-    case success(T)
-    case failure(Error)
+    public let apiURL: URL
+    public let clientID: String
+    public let secretKey: String
+
+    public var deviceToken: String?
+    public var accessToken: String?
+    public var refreshToken: String?
     
-    public func get() throws -> T {
-        switch self {
-        case .success(let result):
-            return result
-        case .failure(let error):
-            throw error
+    public init(apiURL: URL, clientID: String, secretKey: String) {
+        self.apiURL = apiURL
+        self.clientID = clientID
+        self.secretKey = secretKey
+    }
+
+}
+
+extension Context {
+    
+    func apiURL(path: String, query: [String: String?] = [:]) -> URL {
+        var components = URLComponents(url: apiURL, resolvingAgainstBaseURL: true)!
+        components.path += path
+        
+        if !query.isEmpty {
+            components.queryItems = []
+            
+            for (name, value) in query {
+                let item = URLQueryItem(name: name, value: value)
+                components.queryItems?.append(item)
+            }
         }
+        
+        return components.url!
     }
     
 }

@@ -24,22 +24,24 @@
 
 import Foundation
 
-protocol Duality {
+public struct AuthInfo {
     
-    init(_ dual: Data) throws
+    public var accessToken: String?
+    public var refreshToken: String?
     
-    func dual() throws -> Data
+    public init() {
+        
+    }
     
 }
 
-extension Duality {
+extension AuthInfo: IdentifoSuccess {
     
-    init?(_ dual: Data?) throws {
-        if let dual = dual {
-            try self.init(dual)
-        } else {
-            return nil
-        }
+    public init(identifoBody: Data) throws {
+        let json = try identifoBody.entityJSON()
+        
+        accessToken = json["access_token"] as? String
+        refreshToken = json["refresh_token"] as? String
     }
     
 }

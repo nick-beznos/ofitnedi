@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -23,38 +23,11 @@
 //
 
 import Foundation
-import CommonCrypto
 
-extension Data {
+public struct EmptyIdentifoResponse: IdentifoSuccess {
     
-    init(entityJSON: [String: Any]) throws {
-        self = try JSONSerialization.data(withJSONObject: entityJSON, options: .sortedKeys)
-    }
-    
-    func entityJSON() throws -> [String: Any] {
-        let json = try JSONSerialization.jsonObject(with: self, options: .allowFragments)
+    public init(identifoBody: Data) throws {
         
-        if let json = json as? [String: Any] {
-            return json
-        } else {
-            throw IdentifoError.unexpectedResponse(context: IdentifoError.defaultContext(entity: [String: Any].self, file: #file, line: #line))
-        }
-    }
-    
-}
-
-extension Data {
-    
-    static func makeHMACUsingSHA256(key: String, data: Data) -> Data {
-        let data = String(bytes: data, encoding: .utf8) ?? ""
-        return makeHMACUsingSHA256(key: key, data: data)
-    }
-    
-    static func makeHMACUsingSHA256(key: String, data: String) -> Data {
-        var bytes = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-        CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA256), key, key.count, data, data.count, &bytes)
-        
-        return Data(bytes)
     }
     
 }

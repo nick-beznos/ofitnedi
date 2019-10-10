@@ -1,5 +1,5 @@
 //
-//  IdentifoDemo
+//  Identifo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -24,35 +24,43 @@
 
 import Foundation
 
-public struct SignUpWithUsername: Request {
+public struct IdentifoError: IdentifoFailure, LocalizedError {
     
-    public typealias Response = AuthResponse
+    public var statusCode: Int
     
-    public var username: String
-    public var password: String
+    public var message: String
     
-    public init(username: String, password: String) {
-        self.username = username
-        self.password = password
+    public var errorDescription: String? {
+        return message
+    }
+    
+    public init(message: String, statusCode: Int) {
+        self.message = message
+        self.statusCode = statusCode
+    }
+    
+    public init(identifoBody: Data, statusCode: Int) throws {
+        self.statusCode = statusCode
+        
+        let json = try identifoBody.entityJSON()
+        
+        if let description = json["detailed_message"] as? String {
+            self.message = description
+        } else if let string = String(data: identifoBody, encoding: .utf8) {
+            self.message = string
+        } else {
+            self.message = "Unexpected Identifo error."
+        }
     }
     
 }
 
-extension SignUpWithUsername: Duality {
+extension IdentifoError {
     
-    init(_ dual: Data) throws {
-        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
-    }
-    
-    func dual() throws -> Data {
-        var json: [String: Any] = [:]
-        
-        json["username"] = username
-        json["password"] = password
-        json["scopes"] = ["offline"]
-        
-        let data = try Data(entityJSON: json)
-        return data
+    public static func unexpectedResponse(entity: Any.Type, file: String, line: Int) -> IdentifoError {
+        let file = (file as NSString).lastPathComponent
+        let message = "Unexpected response for \(entity) (\(file), line: \(line))."
+        return .init(message: message, statusCode: 8001)
     }
     
 }

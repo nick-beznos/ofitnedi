@@ -42,16 +42,16 @@ final class InitialVC: UIViewController {
         let secretKey = json["identifo_secret_key"] as! String
         
         let url = URL(string: apiURLString)!
-        let environment = Identifo.Environment(apiURL: url, clientID: clientID, secretKey: secretKey)
+        let context = Identifo.Context(apiURL: url, clientID: clientID, secretKey: secretKey)
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: .main)
         
-        identifo = .init(environment: environment, session: session)
+        identifo = .init(context: context, session: session)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let _ = identifo.environment.accessToken {
+        if let _ = identifo.context.accessToken {
             performSegue(withIdentifier: "toProfileNC", sender: self)
         } else {
             performSegue(withIdentifier: "toIntroNC", sender: self)

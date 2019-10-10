@@ -24,26 +24,41 @@
 
 import Foundation
 
-public struct RenewAccessToken: Request {
-    
-    public typealias Response = AuthResponse
-    
-    public init() {
+public struct ContinueWithPhoneVerification {
         
+    public var phone: String
+    public var verificationCode: String
+    
+    public var scopes: [Scope] = [.offline]
+
+    public init(phone: String, verificationCode: String) {
+        self.phone = phone
+        self.verificationCode = verificationCode
     }
     
 }
 
-extension RenewAccessToken: Duality {
+extension ContinueWithPhoneVerification: IdentifoRequest, DefaultHeaderFields {
     
-    init(_ dual: Data) throws {
-        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/auth/phone_login"
     }
     
-    func dual() throws -> Data {
-        let json: [String: Any] = [:]
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
+        var json: [String: Any] = [:]
         
-        let data = try Data(entityJSON: json)
+        json["phone_number"] = phone
+        json["code"] = verificationCode
+        json["scopes"] = scopes.map { $0.rawValue }
+
+        let data = try? Data(json: json)
         return data
     }
     

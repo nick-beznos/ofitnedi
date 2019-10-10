@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -24,52 +24,21 @@
 
 import Foundation
 
-extension Manager {
-    
-    func makeURLRequest(from request: AnyRequest) throws -> URLRequest {
-        let url = try makeURL(for: request)
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = makeHTTPMethod(for: type(of: request))
-        urlRequest.allHTTPHeaderFields = try makeHTTPHeaderFields(for: request)
-        urlRequest.httpBody = try mapper.data(from: request)
-        
-        return urlRequest
-    }
-    
+public protocol DefaultHeaderFields {
+    func identifoHeaderFields(in context: Context) -> [String: String]
 }
 
-extension Manager {
+extension DefaultHeaderFields where Self: IdentifoRequest {
     
-    private func makeURL(for request: AnyRequest) throws -> URL {
-        let path = try makePath(for: request)
-        return context.apiURL(path: path, query: [:])
-    }
-    
-    private func makePath(for request: AnyRequest) throws -> String {
-        switch request {
-        case is CheckIfSignedIn:
-            return "/me"
-        case is RenewAccessToken:
-            return "/auth/token"
-        default:
-            throw IdentifoError.undefinedRequestFactory(context: IdentifoError.defaultContext(entity: type(of: request), file: #file, line: #line))
-        }
-    }
-    
-}
-
-extension Manager {
-    
-    private func makeHTTPHeaderFields(for request: AnyRequest) throws -> [String: String] {
+    public func identifoHeaderFields(in context: Context) -> [String: String] {
         var header: [String: String] = [:]
         
         header["X-Identifo-ClientID"] = context.clientID
-        header["Content-Type"] = makeContentType(for: type(of: request))
-
+        header["Content-Type"] = "application/json"
+        
         let token: String?
         
-        if request is RenewAccessToken {
+        if self is RenewAccessToken {
             token = context.refreshToken
         } else {
             token = context.accessToken
@@ -81,41 +50,25 @@ extension Manager {
         
         let digest: Data
         
-        switch request {
+        switch self {
         case is CheckIfSignedIn, is RenewAccessToken:
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
             let timestamp = formatter.string(from: Date())
             
             header["X-Identifo-Timestamp"] = timestamp
-
-            let urlPath = try makePath(for: request)
+            
+            let urlPath = identifoURLPath(in: context)
             let data = urlPath + timestamp
             digest = .makeHMACUsingSHA256(key: context.secretKey, data: data)
         default:
-            let data = try mapper.data(from: request)
+            let data = identifoBody(in: context) ?? "".data(using: .utf8)!
             digest = .makeHMACUsingSHA256(key: context.secretKey, data: data)
         }
-
+        
         header["Digest"] = "SHA-256=" + digest.base64EncodedString()
         
         return header
-    }
-
-    private func makeContentType(for requestType: AnyRequest.Type) -> String {
-        switch requestType {
-        default:
-            return "application/json"
-        }
-    }
-    
-    private func makeHTTPMethod(for requestType: AnyRequest.Type) -> String {
-        switch requestType {
-        case is CheckIfSignedIn.Type:
-            return "GET"
-        default:
-            return "POST"
-        }
     }
     
 }

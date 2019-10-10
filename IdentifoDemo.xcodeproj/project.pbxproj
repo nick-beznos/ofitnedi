@@ -11,15 +11,9 @@
 		CD1A85E2230306DC0091BC4F /* Identifo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1A85DB230306DB0091BC4F /* Identifo.framework */; };
 		CD1A85E3230306DC0091BC4F /* Identifo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD1A85DB230306DB0091BC4F /* Identifo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD1A85EA230307210091BC4F /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85E9230307210091BC4F /* Manager.swift */; };
-		CD1A85EC2303098C0091BC4F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EB2303098C0091BC4F /* Environment.swift */; };
-		CD1A85EF23031B3A0091BC4F /* Session & Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EE23031B3A0091BC4F /* Session & Task.swift */; };
-		CD1A85F323031ED90091BC4F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F223031ED90091BC4F /* Request.swift */; };
-		CD1A85F523031F7C0091BC4F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F423031F7C0091BC4F /* Result.swift */; };
+		CD1A85EC2303098C0091BC4F /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EB2303098C0091BC4F /* Context.swift */; };
 		CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */; };
-		CD1A85FD230329540091BC4F /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85FC230329540091BC4F /* AuthResponse.swift */; };
-		CD1A85FF230329AE0091BC4F /* Duality.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85FE230329AE0091BC4F /* Duality.swift */; };
-		CD1A860123032CBF0091BC4F /* URLRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */; };
-		CD1A860323032D310091BC4F /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860223032D310091BC4F /* Mapper.swift */; };
+		CD1A85FD230329540091BC4F /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85FC230329540091BC4F /* AuthInfo.swift */; };
 		CD1A860523032D7C0091BC4F /* IdentifoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860423032D7C0091BC4F /* IdentifoError.swift */; };
 		CD1A860823032F820091BC4F /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A860723032F820091BC4F /* DataExtension.swift */; };
 		CD1A8617230368940091BC4F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A8616230368940091BC4F /* ProfileVC.swift */; };
@@ -40,8 +34,13 @@
 		CD82CFAB230304C800350012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA9230304C800350012 /* LaunchScreen.storyboard */; };
 		CD82CFB6230304C800350012 /* IdentifoDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFB5230304C800350012 /* IdentifoDemoTests.swift */; };
 		CD82CFC12303052B00350012 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFC02303052B00350012 /* InitialVC.swift */; };
+		CDD5A281234F6E2D008175A0 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5A280234F6E2D008175A0 /* Scope.swift */; };
+		CDD5A284234F70C6008175A0 /* DefaultHeaderFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5A283234F70C6008175A0 /* DefaultHeaderFields.swift */; };
+		CDD5A286234F768F008175A0 /* EmptyIdentifoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5A285234F768F008175A0 /* EmptyIdentifoResponse.swift */; };
 		CDDDF7762304C63800B3A2D6 /* CheckIfSignedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */; };
 		CDDDF7792304CF1400B3A2D6 /* RenewAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */; };
+		CDE73D6E234F617500005275 /* SessionAndTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EE23031B3A0091BC4F /* SessionAndTask.swift */; };
+		CDE73D70234F623900005275 /* RequestAndResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE73D6F234F623900005275 /* RequestAndResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,15 +79,11 @@
 		CD1A85DD230306DC0091BC4F /* Identifo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Identifo.h; sourceTree = "<group>"; };
 		CD1A85DE230306DC0091BC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD1A85E9230307210091BC4F /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
-		CD1A85EB2303098C0091BC4F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		CD1A85EE23031B3A0091BC4F /* Session & Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session & Task.swift"; sourceTree = "<group>"; };
-		CD1A85F223031ED90091BC4F /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		CD1A85F423031F7C0091BC4F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		CD1A85EB2303098C0091BC4F /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		CD1A85EE23031B3A0091BC4F /* SessionAndTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAndTask.swift; sourceTree = "<group>"; };
 		CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithUsername.swift; sourceTree = "<group>"; };
-		CD1A85FC230329540091BC4F /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
-		CD1A85FE230329AE0091BC4F /* Duality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duality.swift; sourceTree = "<group>"; };
+		CD1A85FC230329540091BC4F /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestFactory.swift; sourceTree = "<group>"; };
-		CD1A860223032D310091BC4F /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		CD1A860423032D7C0091BC4F /* IdentifoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifoError.swift; sourceTree = "<group>"; };
 		CD1A860723032F820091BC4F /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		CD1A860D2303372F0091BC4F /* app_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = app_config.json; sourceTree = "<group>"; };
@@ -114,8 +109,12 @@
 		CD82CFB5230304C800350012 /* IdentifoDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifoDemoTests.swift; sourceTree = "<group>"; };
 		CD82CFB7230304C800350012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD82CFC02303052B00350012 /* InitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
+		CDD5A280234F6E2D008175A0 /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
+		CDD5A283234F70C6008175A0 /* DefaultHeaderFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHeaderFields.swift; sourceTree = "<group>"; };
+		CDD5A285234F768F008175A0 /* EmptyIdentifoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyIdentifoResponse.swift; sourceTree = "<group>"; };
 		CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIfSignedIn.swift; sourceTree = "<group>"; };
 		CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewAccessToken.swift; sourceTree = "<group>"; };
+		CDE73D6F234F623900005275 /* RequestAndResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAndResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,12 +146,11 @@
 		CD1A85DC230306DC0091BC4F /* Identifo */ = {
 			isa = PBXGroup;
 			children = (
-				CD1A860B230333150091BC4F /* Utility */,
-				CD1A85FB2303293D0091BC4F /* Responses */,
-				CD1A85F82303269B0091BC4F /* Requests */,
-				CD1A860C230333870091BC4F /* Components */,
-				CD1A860223032D310091BC4F /* Mapper.swift */,
 				CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */,
+				CDE73D71234F681500005275 /* Extensions */,
+				CD1A85F82303269B0091BC4F /* Entities */,
+				CDD5A282234F70A5008175A0 /* Utilities */,
+				CD1A85EB2303098C0091BC4F /* Context.swift */,
 				CD1A85E9230307210091BC4F /* Manager.swift */,
 				CD1A85DD230306DC0091BC4F /* Identifo.h */,
 				CD1A85DE230306DC0091BC4F /* Info.plist */,
@@ -160,10 +158,11 @@
 			path = Identifo;
 			sourceTree = "<group>";
 		};
-		CD1A85F82303269B0091BC4F /* Requests */ = {
+		CD1A85F82303269B0091BC4F /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				CD1A85F223031ED90091BC4F /* Request.swift */,
+				CD1A85FC230329540091BC4F /* AuthInfo.swift */,
+				CDD5A280234F6E2D008175A0 /* Scope.swift */,
 				CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */,
 				CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */,
 				CD7981912304459F0067641E /* ContinueWithPhone.swift */,
@@ -171,36 +170,10 @@
 				CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */,
 				CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */,
 				CD79818B2304385A0067641E /* SignOut.swift */,
-			);
-			path = Requests;
-			sourceTree = "<group>";
-		};
-		CD1A85FB2303293D0091BC4F /* Responses */ = {
-			isa = PBXGroup;
-			children = (
-				CD1A85FC230329540091BC4F /* AuthResponse.swift */,
-			);
-			path = Responses;
-			sourceTree = "<group>";
-		};
-		CD1A860B230333150091BC4F /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				CD1A85FE230329AE0091BC4F /* Duality.swift */,
-				CD1A860723032F820091BC4F /* DataExtension.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		CD1A860C230333870091BC4F /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				CD1A85EB2303098C0091BC4F /* Environment.swift */,
 				CD1A860423032D7C0091BC4F /* IdentifoError.swift */,
-				CD1A85F423031F7C0091BC4F /* Result.swift */,
-				CD1A85EE23031B3A0091BC4F /* Session & Task.swift */,
+				CDD5A285234F768F008175A0 /* EmptyIdentifoResponse.swift */,
 			);
-			path = Components;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		CD1A8613230368390091BC4F /* Screens */ = {
@@ -268,6 +241,24 @@
 				CD82CFB7230304C800350012 /* Info.plist */,
 			);
 			path = IdentifoDemoTests;
+			sourceTree = "<group>";
+		};
+		CDD5A282234F70A5008175A0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CDE73D6F234F623900005275 /* RequestAndResponse.swift */,
+				CD1A85EE23031B3A0091BC4F /* SessionAndTask.swift */,
+				CDD5A283234F70C6008175A0 /* DefaultHeaderFields.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CDE73D71234F681500005275 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A860723032F820091BC4F /* DataExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,24 +406,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD1A85F523031F7C0091BC4F /* Result.swift in Sources */,
 				CD1A862923038CC90091BC4F /* SignUpWithUsername.swift in Sources */,
 				CD1A860523032D7C0091BC4F /* IdentifoError.swift in Sources */,
 				CD7981922304459F0067641E /* ContinueWithPhone.swift in Sources */,
 				CD1A860823032F820091BC4F /* DataExtension.swift in Sources */,
-				CD1A860123032CBF0091BC4F /* URLRequestFactory.swift in Sources */,
+				CDD5A281234F6E2D008175A0 /* Scope.swift in Sources */,
 				CDDDF7762304C63800B3A2D6 /* CheckIfSignedIn.swift in Sources */,
 				CD1A85EA230307210091BC4F /* Manager.swift in Sources */,
-				CD1A860323032D310091BC4F /* Mapper.swift in Sources */,
-				CD1A85FF230329AE0091BC4F /* Duality.swift in Sources */,
-				CD1A85F323031ED90091BC4F /* Request.swift in Sources */,
+				CDE73D6E234F617500005275 /* SessionAndTask.swift in Sources */,
 				CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */,
-				CD1A85EC2303098C0091BC4F /* Environment.swift in Sources */,
+				CDD5A284234F70C6008175A0 /* DefaultHeaderFields.swift in Sources */,
+				CD1A85EC2303098C0091BC4F /* Context.swift in Sources */,
 				CDDDF7792304CF1400B3A2D6 /* RenewAccessToken.swift in Sources */,
+				CDD5A286234F768F008175A0 /* EmptyIdentifoResponse.swift in Sources */,
 				CD798194230446820067641E /* ContinueWithPhoneVerification.swift in Sources */,
-				CD1A85FD230329540091BC4F /* AuthResponse.swift in Sources */,
-				CD1A85EF23031B3A0091BC4F /* Session & Task.swift in Sources */,
+				CD1A85FD230329540091BC4F /* AuthInfo.swift in Sources */,
 				CD79818C2304385A0067641E /* SignOut.swift in Sources */,
+				CDE73D70234F623900005275 /* RequestAndResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,30 +24,34 @@
 
 import Foundation
 
-public struct ContinueWithPhone: Request {
-    
-    public typealias Response = Void
-    
-    public var phone: String
-    
-    public init(phone: String) {
-        self.phone = phone
+public struct SignOut {
+            
+    public init() {
+        
     }
     
 }
 
-extension ContinueWithPhone: Duality {
+extension SignOut: IdentifoRequest, DefaultHeaderFields {
     
-    init(_ dual: Data) throws {
-        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    public typealias IdentifoSuccess = EmptyIdentifoResponse
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/auth/logout"
     }
     
-    func dual() throws -> Data {
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
         var json: [String: Any] = [:]
         
-        json["phone_number"] = phone
-        
-        let data = try Data(entityJSON: json)
+        json["device_token"] = context.deviceToken
+        json["refresh_token"] = context.refreshToken
+
+        let data = try? Data(json: json)
         return data
     }
     

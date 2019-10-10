@@ -58,8 +58,8 @@ final class SignInWithUsernameVC: UIViewController, AlertableViewController {
         identifo.send(request) { result in
             do {
                 let entity = try result.get()
-                self.identifo.environment.accessToken = entity.accessToken
-                self.identifo.environment.refreshToken = entity.refreshToken
+                self.identifo.context.accessToken = entity.accessToken
+                self.identifo.context.refreshToken = entity.refreshToken
                 
                 self.performSegue(withIdentifier: "unwindToInitialVC", sender: self)
             } catch let error {

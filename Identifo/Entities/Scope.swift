@@ -24,27 +24,8 @@
 
 import Foundation
 
-public struct CheckIfSignedIn: Request {
+public enum Scope: String, CaseIterable {
     
-    public typealias Response = Void
-    
-    public init() {
-        
-    }
-    
-}
-
-extension CheckIfSignedIn: Duality {
-    
-    init(_ dual: Data) throws {
-        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
-    }
-    
-    func dual() throws -> Data {
-        let json: [String: Any] = [:]
-        
-        let data = try Data(entityJSON: json)
-        return data
-    }
+    case offline = "offline"
     
 }

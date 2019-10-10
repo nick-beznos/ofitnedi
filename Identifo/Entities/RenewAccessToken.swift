@@ -24,33 +24,30 @@
 
 import Foundation
 
-public struct SignOut: Request {
+public struct RenewAccessToken {
     
-    public typealias Response = Void
-    
-    public let deviceToken: String?
-    public let refreshToken: String?
-    
-    public init(deviceToken: String? = nil, refreshToken: String? = nil) {
-        self.deviceToken = deviceToken
-        self.refreshToken = refreshToken
+    public init() {
+        
     }
     
 }
 
-extension SignOut: Duality {
+extension RenewAccessToken: IdentifoRequest, DefaultHeaderFields {
     
-    init(_ dual: Data) throws {
-        throw IdentifoError.undefinedMapper(context: IdentifoError.defaultContext(entity: type(of: self), file: #file, line: #line))
+    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/auth/token"
     }
     
-    func dual() throws -> Data {
-        var json: [String: Any] = [:]
-        
-        json["device_token"] = deviceToken
-        json["refresh_token"] = refreshToken
-        
-        let data = try Data(entityJSON: json)
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
+        let json: [String: Any] = [:]
+        let data = try? Data(json: json)
         return data
     }
     

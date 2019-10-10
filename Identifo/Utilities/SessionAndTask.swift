@@ -24,19 +24,19 @@
 
 import Foundation
 
-public typealias Response = (data: Data?, meta: URLResponse?, error: Error?)
+public typealias SessionResponse = (data: Data?, meta: URLResponse?, error: Error?)
 
 public protocol Session {
     
     @discardableResult
-    func send(_ request: URLRequest, completionHandler: @escaping (Response) -> Void) -> Task
+    func send(_ request: URLRequest, completionHandler: @escaping (SessionResponse) -> Void) -> Task
     
 }
 
 extension URLSession: Session {
     
     @discardableResult
-    public func send(_ request: URLRequest, completionHandler: @escaping (Response) -> Void) -> Task {
+    public func send(_ request: URLRequest, completionHandler: @escaping (SessionResponse) -> Void) -> Task {
         let task = dataTask(with: request) { data, response, error in
             completionHandler((data, response, error))
         }
