@@ -32,7 +32,7 @@ public struct RenewAccessToken {
     
 }
 
-extension RenewAccessToken: IdentifoRequest, DefaultHeaderFields {
+extension RenewAccessToken: IdentifoRequest {
     
     public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError

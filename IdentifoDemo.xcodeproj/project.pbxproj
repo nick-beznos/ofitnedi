@@ -34,13 +34,13 @@
 		CD82CFAB230304C800350012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD82CFA9230304C800350012 /* LaunchScreen.storyboard */; };
 		CD82CFB6230304C800350012 /* IdentifoDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFB5230304C800350012 /* IdentifoDemoTests.swift */; };
 		CD82CFC12303052B00350012 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD82CFC02303052B00350012 /* InitialVC.swift */; };
-		CDD5A281234F6E2D008175A0 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5A280234F6E2D008175A0 /* Scope.swift */; };
-		CDD5A284234F70C6008175A0 /* DefaultHeaderFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5A283234F70C6008175A0 /* DefaultHeaderFields.swift */; };
 		CDD5A286234F768F008175A0 /* EmptyIdentifoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5A285234F768F008175A0 /* EmptyIdentifoResponse.swift */; };
 		CDDDF7762304C63800B3A2D6 /* CheckIfSignedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */; };
 		CDDDF7792304CF1400B3A2D6 /* RenewAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */; };
 		CDE73D6E234F617500005275 /* SessionAndTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A85EE23031B3A0091BC4F /* SessionAndTask.swift */; };
 		CDE73D70234F623900005275 /* RequestAndResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE73D6F234F623900005275 /* RequestAndResponse.swift */; };
+		CDF1F27C23509C5100640E8D /* ContinueWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF1F27B23509C5100640E8D /* ContinueWithApple.swift */; };
+		CDF1F2812350B4B000640E8D /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1F2802350B4B000640E8D /* AuthenticationServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,6 @@
 		CD1A85EE23031B3A0091BC4F /* SessionAndTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAndTask.swift; sourceTree = "<group>"; };
 		CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithUsername.swift; sourceTree = "<group>"; };
 		CD1A85FC230329540091BC4F /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
-		CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestFactory.swift; sourceTree = "<group>"; };
 		CD1A860423032D7C0091BC4F /* IdentifoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifoError.swift; sourceTree = "<group>"; };
 		CD1A860723032F820091BC4F /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		CD1A860D2303372F0091BC4F /* app_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = app_config.json; sourceTree = "<group>"; };
@@ -109,12 +108,13 @@
 		CD82CFB5230304C800350012 /* IdentifoDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifoDemoTests.swift; sourceTree = "<group>"; };
 		CD82CFB7230304C800350012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD82CFC02303052B00350012 /* InitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
-		CDD5A280234F6E2D008175A0 /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
-		CDD5A283234F70C6008175A0 /* DefaultHeaderFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHeaderFields.swift; sourceTree = "<group>"; };
 		CDD5A285234F768F008175A0 /* EmptyIdentifoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyIdentifoResponse.swift; sourceTree = "<group>"; };
 		CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIfSignedIn.swift; sourceTree = "<group>"; };
 		CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewAccessToken.swift; sourceTree = "<group>"; };
 		CDE73D6F234F623900005275 /* RequestAndResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAndResponse.swift; sourceTree = "<group>"; };
+		CDF1F27B23509C5100640E8D /* ContinueWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithApple.swift; sourceTree = "<group>"; };
+		CDF1F27E2350A47100640E8D /* IdentifoDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IdentifoDemo.entitlements; sourceTree = "<group>"; };
+		CDF1F2802350B4B000640E8D /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDF1F2812350B4B000640E8D /* AuthenticationServices.framework in Frameworks */,
 				CD1A85E2230306DC0091BC4F /* Identifo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,7 +147,6 @@
 		CD1A85DC230306DC0091BC4F /* Identifo */ = {
 			isa = PBXGroup;
 			children = (
-				CD1A860023032CBF0091BC4F /* URLRequestFactory.swift */,
 				CDE73D71234F681500005275 /* Extensions */,
 				CD1A85F82303269B0091BC4F /* Entities */,
 				CDD5A282234F70A5008175A0 /* Utilities */,
@@ -162,11 +162,11 @@
 			isa = PBXGroup;
 			children = (
 				CD1A85FC230329540091BC4F /* AuthInfo.swift */,
-				CDD5A280234F6E2D008175A0 /* Scope.swift */,
 				CD1A85F9230327A80091BC4F /* SignInWithUsername.swift */,
 				CD1A862823038CC90091BC4F /* SignUpWithUsername.swift */,
 				CD7981912304459F0067641E /* ContinueWithPhone.swift */,
 				CD798193230446820067641E /* ContinueWithPhoneVerification.swift */,
+				CDF1F27B23509C5100640E8D /* ContinueWithApple.swift */,
 				CDDDF7752304C63800B3A2D6 /* CheckIfSignedIn.swift */,
 				CDDDF7782304CF1400B3A2D6 /* RenewAccessToken.swift */,
 				CD79818B2304385A0067641E /* SignOut.swift */,
@@ -207,6 +207,7 @@
 				CD82CF9E230304C600350012 /* Products */,
 				CD1A860D2303372F0091BC4F /* app_config.json */,
 				CD1A860E2303372F0091BC4F /* README.md */,
+				CDF1F27F2350B4B000640E8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +230,7 @@
 				CD82CFA4230304C600350012 /* Main.storyboard */,
 				CD82CFA7230304C800350012 /* Assets.xcassets */,
 				CD82CFA9230304C800350012 /* LaunchScreen.storyboard */,
+				CDF1F27E2350A47100640E8D /* IdentifoDemo.entitlements */,
 				CD82CFAC230304C800350012 /* Info.plist */,
 			);
 			path = IdentifoDemo;
@@ -248,7 +250,6 @@
 			children = (
 				CDE73D6F234F623900005275 /* RequestAndResponse.swift */,
 				CD1A85EE23031B3A0091BC4F /* SessionAndTask.swift */,
-				CDD5A283234F70C6008175A0 /* DefaultHeaderFields.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -259,6 +260,14 @@
 				CD1A860723032F820091BC4F /* DataExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CDF1F27F2350B4B000640E8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDF1F2802350B4B000640E8D /* AuthenticationServices.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,12 +419,10 @@
 				CD1A860523032D7C0091BC4F /* IdentifoError.swift in Sources */,
 				CD7981922304459F0067641E /* ContinueWithPhone.swift in Sources */,
 				CD1A860823032F820091BC4F /* DataExtension.swift in Sources */,
-				CDD5A281234F6E2D008175A0 /* Scope.swift in Sources */,
 				CDDDF7762304C63800B3A2D6 /* CheckIfSignedIn.swift in Sources */,
 				CD1A85EA230307210091BC4F /* Manager.swift in Sources */,
 				CDE73D6E234F617500005275 /* SessionAndTask.swift in Sources */,
 				CD1A85FA230327A80091BC4F /* SignInWithUsername.swift in Sources */,
-				CDD5A284234F70C6008175A0 /* DefaultHeaderFields.swift in Sources */,
 				CD1A85EC2303098C0091BC4F /* Context.swift in Sources */,
 				CDDDF7792304CF1400B3A2D6 /* RenewAccessToken.swift in Sources */,
 				CDD5A286234F768F008175A0 /* EmptyIdentifoResponse.swift in Sources */,
@@ -423,6 +430,7 @@
 				CD1A85FD230329540091BC4F /* AuthInfo.swift in Sources */,
 				CD79818C2304385A0067641E /* SignOut.swift in Sources */,
 				CDE73D70234F623900005275 /* RequestAndResponse.swift in Sources */,
+				CDF1F27C23509C5100640E8D /* ContinueWithApple.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +512,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madappgang.Identifo;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -534,6 +543,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madappgang.Identifo;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -665,6 +675,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IdentifoDemo/IdentifoDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E85N35G3YB;
 				INFOPLIST_FILE = IdentifoDemo/Info.plist;
@@ -672,6 +683,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madappgang.IdentifoDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -684,6 +696,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IdentifoDemo/IdentifoDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E85N35G3YB;
 				INFOPLIST_FILE = IdentifoDemo/Info.plist;
@@ -691,6 +704,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madappgang.IdentifoDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

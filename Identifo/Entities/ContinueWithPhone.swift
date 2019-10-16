@@ -34,7 +34,7 @@ public struct ContinueWithPhone {
     
 }
 
-extension ContinueWithPhone: IdentifoRequest, DefaultHeaderFields {
+extension ContinueWithPhone: IdentifoRequest {
     
     public typealias IdentifoSuccess = EmptyIdentifoResponse
     public typealias IdentifoFailure = IdentifoError

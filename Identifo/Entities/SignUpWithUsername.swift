@@ -29,7 +29,7 @@ public struct SignUpWithUsername {
     public var username: String
     public var password: String
     
-    public var scopes: [Scope] = [.offline]
+    public var scopes: [String] = ["offline"]
 
     public init(username: String, password: String) {
         self.username = username
@@ -38,7 +38,7 @@ public struct SignUpWithUsername {
     
 }
 
-extension SignUpWithUsername: IdentifoRequest, DefaultHeaderFields {
+extension SignUpWithUsername: IdentifoRequest {
     
     public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
@@ -56,7 +56,7 @@ extension SignUpWithUsername: IdentifoRequest, DefaultHeaderFields {
         
         json["username"] = username
         json["password"] = password
-        json["scopes"] = scopes.map { $0.rawValue }
+        json["scopes"] = scopes
         
         let data = try? Data(json: json)
         return data

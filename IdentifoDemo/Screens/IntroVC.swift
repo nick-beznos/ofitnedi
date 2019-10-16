@@ -23,6 +23,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 import Identifo
 
 final class IntroVC: UITableViewController {
@@ -49,7 +50,62 @@ final class IntroVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            continueWithAppleID()
+        }
+    }
+    
+    private func continueWithAppleID() {
+        guard #available(iOS 13, *) else { return }
         
+        let provider = ASAuthorizationAppleIDProvider()
+        let request = provider.createRequest()
+        request.requestedScopes = []
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        controller.performRequests()
     }
     
 }
+
+@available(iOS 13.0, *)
+extension IntroVC: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let credentials = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
+        
+        if let authorizationCode = credentials.authorizationCode {
+            let authorizationCode = String(data: authorizationCode, encoding: .utf8)!
+            let request = ContinueWithApple(authorizationCode: authorizationCode)
+
+            identifo.send(request) { result in
+                do {
+                    let authInfo = try result.get()
+                    
+                    debugPrint(authInfo)
+                } catch let error {
+                    debugPrint(error)
+                }
+            }
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        debugPrint(error)
+    }
+    
+}
+
+@available(iOS 13.0, *)
+extension IntroVC: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
+    }
+    
+}
+

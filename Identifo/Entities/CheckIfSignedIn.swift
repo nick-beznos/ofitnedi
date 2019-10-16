@@ -32,7 +32,7 @@ public struct CheckIfSignedIn {
     
 }
 
-extension CheckIfSignedIn: IdentifoRequest, DefaultHeaderFields {
+extension CheckIfSignedIn: IdentifoRequest {
     
     public typealias IdentifoSuccess = EmptyIdentifoResponse
     public typealias IdentifoFailure = IdentifoError

@@ -75,7 +75,44 @@ extension IdentifoRequest {
     }
     
     public func identifoHeaderFields(in context: Context) -> [String: String] {
-        return [:]
+        var header: [String: String] = [:]
+        
+        header["X-Identifo-ClientID"] = context.clientID
+        header["Content-Type"] = "application/json"
+        
+        let token: String?
+        
+        if self is RenewAccessToken {
+            token = context.refreshToken
+        } else {
+            token = context.accessToken
+        }
+        
+        if let token = token {
+            header["Authorization"] = "Bearer \(token)"
+        }
+        
+        let digest: Data
+        
+        switch self {
+        case is CheckIfSignedIn, is RenewAccessToken:
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            let timestamp = formatter.string(from: Date())
+            
+            header["X-Identifo-Timestamp"] = timestamp
+            
+            let urlPath = identifoURLPath(in: context)
+            let data = urlPath + timestamp
+            digest = .makeHMACUsingSHA256(key: context.secretKey, data: data)
+        default:
+            let data = identifoBody(in: context) ?? "".data(using: .utf8)!
+            digest = .makeHMACUsingSHA256(key: context.secretKey, data: data)
+        }
+        
+        header["Digest"] = "SHA-256=" + digest.base64EncodedString()
+        
+        return header
     }
     
     public func identifoBody(in context: Context) -> Data? {

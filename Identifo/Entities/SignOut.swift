@@ -32,7 +32,7 @@ public struct SignOut {
     
 }
 
-extension SignOut: IdentifoRequest, DefaultHeaderFields {
+extension SignOut: IdentifoRequest {
     
     public typealias IdentifoSuccess = EmptyIdentifoResponse
     public typealias IdentifoFailure = IdentifoError

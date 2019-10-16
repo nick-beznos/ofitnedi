@@ -24,8 +24,40 @@
 
 import Foundation
 
-public enum Scope: String, CaseIterable {
+public struct ContinueWithApple {
     
-    case offline = "offline"
+    public var authorizationCode: String
+    
+    public var scopes: [String] = ["offline"]
+    
+    public init(authorizationCode: String) {
+        self.authorizationCode = authorizationCode
+    }
+    
+}
+
+extension ContinueWithApple: IdentifoRequest {
+    
+    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/auth/federated"
+    }
+    
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
+        var json: [String: Any] = [:]
+        
+        json["authorization_code"] = authorizationCode
+        json["provider"] = "apple"
+        json["scopes"] = scopes
+        
+        let data = try? Data(json: json)
+        return data
+    }
     
 }

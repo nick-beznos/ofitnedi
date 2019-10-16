@@ -27,6 +27,7 @@ import Foundation
 public struct Context {
     
     public let apiURL: URL
+    
     public let clientID: String
     public let secretKey: String
 

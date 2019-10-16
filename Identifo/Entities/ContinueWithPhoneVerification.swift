@@ -29,7 +29,7 @@ public struct ContinueWithPhoneVerification {
     public var phone: String
     public var verificationCode: String
     
-    public var scopes: [Scope] = [.offline]
+    public var scopes: [String] = ["offline"]
 
     public init(phone: String, verificationCode: String) {
         self.phone = phone
@@ -38,7 +38,7 @@ public struct ContinueWithPhoneVerification {
     
 }
 
-extension ContinueWithPhoneVerification: IdentifoRequest, DefaultHeaderFields {
+extension ContinueWithPhoneVerification: IdentifoRequest {
     
     public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
@@ -56,7 +56,7 @@ extension ContinueWithPhoneVerification: IdentifoRequest, DefaultHeaderFields {
         
         json["phone_number"] = phone
         json["code"] = verificationCode
-        json["scopes"] = scopes.map { $0.rawValue }
+        json["scopes"] = scopes
 
         let data = try? Data(json: json)
         return data
