@@ -16,13 +16,13 @@ Check [main repo](https://github.com/MadAppGang/identifo) for general project ov
 ### CocoaPods
 
 ```ruby
-pod 'identifo-ios', '~> 0.1.0'
+pod 'identifo-ios', '~> 1.0.0'
 ```
 
 ### Carthage
 
 ```ogdl
-github "MadAppGang/identifo-ios" "0.1.0"
+github "MadAppGang/identifo-ios" "1.0.0"
 ```
 
 ## License
