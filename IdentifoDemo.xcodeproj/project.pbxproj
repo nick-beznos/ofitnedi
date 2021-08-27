@@ -13,7 +13,6 @@
 		CD1A8619230378E00091BC4F /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A8618230378E00091BC4F /* IntroVC.swift */; };
 		CD1A861B230379330091BC4F /* SignInWithUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A861A230379330091BC4F /* SignInWithUsernameVC.swift */; };
 		CD1A861D23037A0F0091BC4F /* SignUpWithUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A861C23037A0F0091BC4F /* SignUpWithUsernameVC.swift */; };
-		CD1A861E23037D9D0091BC4F /* app_config.json in Resources */ = {isa = PBXBuildFile; fileRef = CD1A860D2303372F0091BC4F /* app_config.json */; };
 		CD1A862123037E430091BC4F /* AlertableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A862023037E430091BC4F /* AlertableViewController.swift */; };
 		CD79818E230441380067641E /* PhoneInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD79818D230441380067641E /* PhoneInputVC.swift */; };
 		CD798190230441760067641E /* VerificationCodeInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD79818F230441760067641E /* VerificationCodeInputVC.swift */; };
@@ -41,6 +40,7 @@
 		CDB6F06224BFA62F006F61DE /* SessionAndTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB6F03B24BFA4A4006F61DE /* SessionAndTask.swift */; };
 		CDB6F06324BFA639006F61DE /* Identifo.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB6F03824BFA4A4006F61DE /* Identifo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDF1F2812350B4B000640E8D /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1F2802350B4B000640E8D /* AuthenticationServices.framework */; };
+		E4FEBBC426D93BD400B2501A /* app_config.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FEBBC326D93BD400B2501A /* app_config.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +76,6 @@
 
 /* Begin PBXFileReference section */
 		CD1A85DB230306DB0091BC4F /* Identifo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Identifo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD1A860D2303372F0091BC4F /* app_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = app_config.json; sourceTree = "<group>"; };
 		CD1A860E2303372F0091BC4F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CD1A8616230368940091BC4F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CD1A8618230378E00091BC4F /* IntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		CDB6F03F24BFA4A4006F61DE /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		CDF1F27E2350A47100640E8D /* IdentifoDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IdentifoDemo.entitlements; sourceTree = "<group>"; };
 		CDF1F2802350B4B000640E8D /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		E4FEBBC326D93BD400B2501A /* app_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = app_config.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +189,8 @@
 				CD82CFB4230304C800350012 /* IdentifoDemoTests */,
 				CD82CF9E230304C600350012 /* Products */,
 				CDF1F27F2350B4B000640E8D /* Frameworks */,
-				CD1A860D2303372F0091BC4F /* app_config.json */,
 				CD1A860E2303372F0091BC4F /* README.md */,
+				E4FEBBC326D93BD400B2501A /* app_config.json */,
 			);
 			sourceTree = "<group>";
 		};
@@ -396,7 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD82CFAB230304C800350012 /* LaunchScreen.storyboard in Resources */,
-				CD1A861E23037D9D0091BC4F /* app_config.json in Resources */,
+				E4FEBBC426D93BD400B2501A /* app_config.json in Resources */,
 				CD82CFA8230304C800350012 /* Assets.xcassets in Resources */,
 				CD82CFA6230304C600350012 /* Main.storyboard in Resources */,
 			);
