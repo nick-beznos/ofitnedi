@@ -24,21 +24,42 @@
 
 import Foundation
 
-public struct CheckIfSignedIn {
+struct RegisterWithUsername {
         
-    public init() {
-        
+    public var username: String
+    public var password: String
+    
+    public var scopes: [String] = ["offline"]
+
+    public init(username: String, password: String) {
+        self.username = username
+        self.password = password
     }
     
 }
 
-extension CheckIfSignedIn: IdentifoRequest {
+extension RegisterWithUsername: IdentifoRequest {
     
-    public typealias IdentifoSuccess = EmptyIdentifoResponse
+    public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/me"
+        return "/auth/register"
     }
+    
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
+        var json: [String: Any] = [:]
         
+        json["username"] = username
+        json["password"] = password
+        json["scopes"] = scopes
+        
+        let data = try? Data(json: json)
+        return data
+    }
+    
 }

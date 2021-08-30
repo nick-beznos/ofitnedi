@@ -1,5 +1,5 @@
 //
-//  IdentifoDemo
+//  Identifo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -22,48 +22,44 @@
 //  SOFTWARE.
 //
 
-import UIKit
-import Identifo
+import Foundation
 
-final class PhoneInputVC: UIViewController, AlertableViewController {
-    
-    @IBOutlet private var phoneField: UITextField!
-    @IBOutlet private var continueButton: UIButton!
-    
-    var identifo: IdentifoManager!
-    
-    private var phone: String!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+struct LogInWithUsername {
         
-        
+    private var username: String
+    private var password: String
+    
+    private var scopes: [String] = ["offline"]
+    
+    init(username: String, password: String) {
+        self.username = username
+        self.password = password
+    }
+
+}
+
+extension LogInWithUsername: IdentifoRequest {
+    
+    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/auth/login"
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "toVerificationCodeInputVC":
-            let controller = segue.destination as! VerificationCodeInputVC
-            controller.identifo = identifo
-            controller.phone = phone
-        default:
-            break
-        }
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
     }
     
-    @IBAction private func continueButtonPressed(_ sender: UIButton) {
-        let phone = phoneField.text ?? ""
+    public func identifoBody(in context: Context) -> Data? {
+        var json: [String: Any] = [:]
         
-        identifo.requestPhoneCode(phoneNumber: phone) { result in
-            do {
-                _ = try result.get()
-                self.phone = phone
-
-                self.performSegue(withIdentifier: "toVerificationCodeInputVC", sender: self)
-            } catch let error {
-                self.showErrorMessage(error)
-            }
-        }
+        json["username"] = username
+        json["password"] = password
+        json["scopes"] = scopes
+        
+        let data = try? Data(json: json)
+        return data
     }
     
 }

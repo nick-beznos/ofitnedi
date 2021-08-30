@@ -24,21 +24,27 @@
 
 import Foundation
 
-public struct RenewAccessToken {
+struct FederatedLogin {
     
-    public init() {
-        
+    public var authorizationCode: String
+    
+    public var provider: FederatedProvider
+    public var scopes: [String] = ["offline"]
+
+    public init(provider: FederatedProvider, authorizationCode: String) {
+        self.provider = provider
+        self.authorizationCode = authorizationCode
     }
     
 }
 
-extension RenewAccessToken: IdentifoRequest {
+extension FederatedLogin: IdentifoRequest {
     
     public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/token"
+        return "/auth/federated"
     }
     
     public func identifoMethod(in context: Context) -> String {
@@ -46,7 +52,12 @@ extension RenewAccessToken: IdentifoRequest {
     }
     
     public func identifoBody(in context: Context) -> Data? {
-        let json: [String: Any] = [:]
+        var json: [String: Any] = [:]
+        
+        json["authorization_code"] = authorizationCode
+        json["provider"] = provider.rawValue
+        json["scopes"] = scopes
+        
         let data = try? Data(json: json)
         return data
     }

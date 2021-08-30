@@ -24,35 +24,16 @@
 
 import Foundation
 
-public struct SignOut {
-            
-    public init() {
-        
-    }
-    
+struct CheckIfSignedIn {
 }
 
-extension SignOut: IdentifoRequest {
+extension CheckIfSignedIn: IdentifoRequest {
     
     public typealias IdentifoSuccess = EmptyIdentifoResponse
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/logout"
+        return "/me"
     }
-    
-    public func identifoMethod(in context: Context) -> String {
-        return "POST"
-    }
-    
-    public func identifoBody(in context: Context) -> Data? {
-        var json: [String: Any] = [:]
         
-        json["device_token"] = context.deviceToken
-        json["refresh_token"] = context.refreshToken
-
-        let data = try? Data(json: json)
-        return data
-    }
-    
 }

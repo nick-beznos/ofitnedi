@@ -27,7 +27,7 @@ import Identifo
 
 final class InitialVC: UIViewController {
 
-    var identifo: Identifo.Manager!
+    var identifo: IdentifoManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
