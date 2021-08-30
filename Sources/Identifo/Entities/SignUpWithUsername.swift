@@ -24,23 +24,27 @@
 
 import Foundation
 
-struct RequestPhoneCode {
+public struct SignUpWithUsername {
         
-    public var phone: String
+    public var username: String
+    public var password: String
     
-    public init(phone: String) {
-        self.phone = phone
+    public var scopes: [String] = ["offline"]
+
+    public init(username: String, password: String) {
+        self.username = username
+        self.password = password
     }
     
 }
 
-extension RequestPhoneCode: IdentifoRequest {
+extension SignUpWithUsername: IdentifoRequest {
     
-    public typealias IdentifoSuccess = EmptyIdentifoResponse
+    public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/request_phone_code"
+        return "/auth/register"
     }
     
     public func identifoMethod(in context: Context) -> String {
@@ -50,8 +54,10 @@ extension RequestPhoneCode: IdentifoRequest {
     public func identifoBody(in context: Context) -> Data? {
         var json: [String: Any] = [:]
         
-        json["phone_number"] = phone
-
+        json["username"] = username
+        json["password"] = password
+        json["scopes"] = scopes
+        
         let data = try? Data(json: json)
         return data
     }

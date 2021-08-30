@@ -28,7 +28,7 @@ import Identifo
 
 final class IntroVC: UITableViewController {
 
-    var identifo: IdentifoManager!
+    var identifo: Manager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +80,9 @@ extension IntroVC: ASAuthorizationControllerDelegate {
         
         if let authorizationCode = credentials.authorizationCode {
             let authorizationCode = String(data: authorizationCode, encoding: .utf8)!
+            let request = ContinueWithApple(authorizationCode: authorizationCode)
 
-            identifo.federatedLogin(provider: .apple, authorizationCode: authorizationCode) { result in
+            identifo.send(request) { result in
                 do {
                     let authInfo = try result.get()
                     

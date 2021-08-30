@@ -26,7 +26,7 @@ import Foundation
 
 // MARK: IdentifoRequest
 
-protocol IdentifoRequest {
+public protocol IdentifoRequest {
     
     associatedtype IdentifoSuccess: Identifo.IdentifoSuccess
     associatedtype IdentifoFailure: Identifo.IdentifoFailure

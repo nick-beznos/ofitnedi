@@ -24,16 +24,27 @@
 
 import Foundation
 
-struct LogOut {
+public struct ContinueWithPhoneVerification {
+        
+    public var phone: String
+    public var verificationCode: String
+    
+    public var scopes: [String] = ["offline"]
+
+    public init(phone: String, verificationCode: String) {
+        self.phone = phone
+        self.verificationCode = verificationCode
+    }
+    
 }
 
-extension LogOut: IdentifoRequest {
+extension ContinueWithPhoneVerification: IdentifoRequest {
     
-    public typealias IdentifoSuccess = EmptyIdentifoResponse
+    public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/logout"
+        return "/auth/phone_login"
     }
     
     public func identifoMethod(in context: Context) -> String {
@@ -43,8 +54,9 @@ extension LogOut: IdentifoRequest {
     public func identifoBody(in context: Context) -> Data? {
         var json: [String: Any] = [:]
         
-        json["device_token"] = context.deviceToken
-        json["refresh_token"] = context.refreshToken
+        json["phone_number"] = phone
+        json["code"] = verificationCode
+        json["scopes"] = scopes
 
         let data = try? Data(json: json)
         return data

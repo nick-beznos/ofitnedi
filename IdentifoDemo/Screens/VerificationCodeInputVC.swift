@@ -30,7 +30,7 @@ final class VerificationCodeInputVC: UIViewController, AlertableViewController {
     @IBOutlet private var verificationCodeField: UITextField!
     @IBOutlet private var continueButton: UIButton!
     
-    var identifo: IdentifoManager!
+    var identifo: Identifo.Manager!
     var phone: String!
     
     override func viewDidLoad() {
@@ -52,9 +52,14 @@ final class VerificationCodeInputVC: UIViewController, AlertableViewController {
     @IBAction private func continueButtonPressed(_ sender: UIButton) {
         let verificationCode = verificationCodeField.text ?? ""
 
-        identifo.loginWith(phoneNumber: phone, verificationCode: verificationCode) { result in
+        let request = ContinueWithPhoneVerification(phone: phone, verificationCode: verificationCode)
+        
+        identifo.send(request) { result in
             do {
-                let _ = try result.get()
+                let entity = try result.get()
+                self.identifo.context.accessToken = entity.accessToken
+                self.identifo.context.refreshToken = entity.refreshToken
+
                 self.performSegue(withIdentifier: "unwindToInitialVC", sender: self)
             } catch let error {
                 self.showErrorMessage(error)

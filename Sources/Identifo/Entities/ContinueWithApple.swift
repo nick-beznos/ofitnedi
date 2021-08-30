@@ -24,16 +24,25 @@
 
 import Foundation
 
-struct RenewAccessToken {
+public struct ContinueWithApple {
+    
+    public var authorizationCode: String
+    
+    public var scopes: [String] = ["offline"]
+    
+    public init(authorizationCode: String) {
+        self.authorizationCode = authorizationCode
+    }
+    
 }
 
-extension RenewAccessToken: IdentifoRequest {
+extension ContinueWithApple: IdentifoRequest {
     
     public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/token"
+        return "/auth/federated"
     }
     
     public func identifoMethod(in context: Context) -> String {
@@ -41,7 +50,12 @@ extension RenewAccessToken: IdentifoRequest {
     }
     
     public func identifoBody(in context: Context) -> Data? {
-        let json: [String: Any] = [:]
+        var json: [String: Any] = [:]
+        
+        json["authorization_code"] = authorizationCode
+        json["provider"] = "apple"
+        json["scopes"] = scopes
+        
         let data = try? Data(json: json)
         return data
     }

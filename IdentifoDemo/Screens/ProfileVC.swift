@@ -31,7 +31,7 @@ final class ProfileVC: UIViewController, AlertableViewController {
     @IBOutlet private var checkIfSignedInButton: UIButton!
     @IBOutlet private var signOutButton: UIButton!
     
-    var identifo: IdentifoManager!
+    var identifo: Identifo.Manager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,19 +50,25 @@ final class ProfileVC: UIViewController, AlertableViewController {
     }
     
     @IBAction private func renewAccessTokenButtonPressed(_ sender: UIButton) {
-        identifo.renewAccessToken { result in
+        let request = RenewAccessToken()
+        
+        identifo.send(request) { result in
             do {
-                let _ = try result.get()
+                let entity = try result.get()
+                self.identifo.context.accessToken = entity.accessToken
+                self.identifo.context.refreshToken = entity.refreshToken
+
                 self.showMessage("Your access token is renewed. Have a nice day. ✨")
             } catch let error {
                 self.showErrorMessage(error)
             }
         }
-        
     }
     
     @IBAction private func checkIfSignedInButtonPressed(_ sender: UIButton) {
-        identifo.deanonymizeUser { result in
+        let request = CheckIfSignedIn()
+        
+        identifo.send(request) { result in
             do {
                 _ = try result.get()
                 
@@ -74,9 +80,14 @@ final class ProfileVC: UIViewController, AlertableViewController {
     }
     
     @IBAction private func signOutButtonButtonPressed(_ sender: UIButton) {
-        identifo.logout { result in
+        let request = SignOut()
+        
+        identifo.send(request) { result in
             do {
                 _ = try result.get()
+                self.identifo.context.accessToken = nil
+                self.identifo.context.refreshToken = nil
+                
                 self.performSegue(withIdentifier: "unwindToInitialVC", sender: self)
             } catch let error {
                 self.showErrorMessage(error)

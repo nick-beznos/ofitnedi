@@ -1,5 +1,5 @@
 //
-//  IdentifoDemo
+//  Identifo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -22,50 +22,41 @@
 //  SOFTWARE.
 //
 
-import UIKit
-import Identifo
+import Foundation
 
-final class PhoneInputVC: UIViewController, AlertableViewController {
+public final class Manager {
     
-    @IBOutlet private var phoneField: UITextField!
-    @IBOutlet private var continueButton: UIButton!
-    
-    var identifo: Identifo.Manager!
-    
-    private var phone: String!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    public var context: Context
+    public var session: Session
         
-        
+    public init(context: Context, session: Session = URLSession(configuration: .ephemeral)) {
+        self.context = context
+        self.session = session
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "toVerificationCodeInputVC":
-            let controller = segue.destination as! VerificationCodeInputVC
-            controller.identifo = identifo
-            controller.phone = phone
-        default:
-            break
-        }
-    }
-    
-    @IBAction private func continueButtonPressed(_ sender: UIButton) {
-        let phone = phoneField.text ?? ""
+    @discardableResult
+    public func send<T: IdentifoRequest>(_ request: T, completionHandler: @escaping (Result<T.IdentifoSuccess, Error>) -> Void) -> Task {
+        let urlRequest = request.identifoRequest(in: context)
         
-        let request = ContinueWithPhone(phone: phone)
-        
-        identifo.send(request) { result in
+        return session.send(urlRequest) { response in
             do {
-                _ = try result.get()
-                self.phone = phone
+                if let error = response.error {
+                    throw error
+                }
                 
-                self.performSegue(withIdentifier: "toVerificationCodeInputVC", sender: self)
+                let data = response.data ?? Data()
+                let meta = response.meta as? HTTPURLResponse
+                
+                guard let statusCode = meta?.statusCode, statusCode < 400 else {
+                    let error = try T.IdentifoFailure(identifoBody: data, statusCode: meta?.statusCode ?? -1)
+                    throw error
+                }
+                
+                let networkResponse = try T.IdentifoSuccess(identifoBody: data)
+                completionHandler(.success(networkResponse))
             } catch let error {
-                self.showErrorMessage(error)
+                completionHandler(.failure(error))
             }
         }
     }
-    
 }
