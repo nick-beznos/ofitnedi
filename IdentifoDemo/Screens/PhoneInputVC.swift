@@ -30,7 +30,7 @@ final class PhoneInputVC: UIViewController, AlertableViewController {
     @IBOutlet private var phoneField: UITextField!
     @IBOutlet private var continueButton: UIButton!
     
-    var identifo: Identifo.Manager!
+    var identifo: IdentifoManager!
     
     private var phone: String!
     
@@ -54,13 +54,11 @@ final class PhoneInputVC: UIViewController, AlertableViewController {
     @IBAction private func continueButtonPressed(_ sender: UIButton) {
         let phone = phoneField.text ?? ""
         
-        let request = ContinueWithPhone(phone: phone)
-        
-        identifo.send(request) { result in
+        identifo.requestPhoneCode(phoneNumber: phone) { result in
             do {
                 _ = try result.get()
                 self.phone = phone
-                
+
                 self.performSegue(withIdentifier: "toVerificationCodeInputVC", sender: self)
             } catch let error {
                 self.showErrorMessage(error)

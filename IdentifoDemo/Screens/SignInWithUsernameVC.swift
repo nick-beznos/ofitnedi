@@ -31,7 +31,7 @@ final class SignInWithUsernameVC: UIViewController, AlertableViewController {
     @IBOutlet private var passwordField: UITextField!
     @IBOutlet private var continueButton: UIButton!
     
-    var identifo: Identifo.Manager!
+    var identifo: IdentifoManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,16 +53,11 @@ final class SignInWithUsernameVC: UIViewController, AlertableViewController {
         let username = usernameField.text ?? ""
         let password = passwordField.text ?? ""
         
-        let request = SignInWithUsername(username: username, password: password)
-        
-        identifo.send(request) { result in
-            do {
-                let entity = try result.get()
-                self.identifo.context.accessToken = entity.accessToken
-                self.identifo.context.refreshToken = entity.refreshToken
-                
+        identifo.loginWith(username: username, password: password) { result in
+            switch result {
+            case .success(_):
                 self.performSegue(withIdentifier: "unwindToInitialVC", sender: self)
-            } catch let error {
+            case .failure(let error):
                 self.showErrorMessage(error)
             }
         }
