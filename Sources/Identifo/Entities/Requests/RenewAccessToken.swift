@@ -24,21 +24,26 @@
 
 import Foundation
 
-public struct CheckIfSignedIn {
-        
-    public init() {
-        
-    }
-    
+struct RenewAccessToken {
 }
 
-extension CheckIfSignedIn: IdentifoRequest {
+extension RenewAccessToken: IdentifoRequest {
     
-    public typealias IdentifoSuccess = EmptyIdentifoResponse
+    public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/me"
+        return "/auth/token"
     }
-        
+    
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
+        let json: [String: Any] = [:]
+        let data = try? Data(json: json)
+        return data
+    }
+    
 }

@@ -1,5 +1,5 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
 //  Copyright (C) 2019 MadAppGang Pty Ltd
 //
@@ -22,14 +22,44 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for Identifo.
-FOUNDATION_EXPORT double IdentifoVersionNumber;
+struct PhoneLogin {
+        
+    public var phone: String
+    public var verificationCode: String
+    
+    public var scopes: [String] = ["offline"]
 
-//! Project version string for Identifo.
-FOUNDATION_EXPORT const unsigned char IdentifoVersionString[];
+    public init(phone: String, verificationCode: String) {
+        self.phone = phone
+        self.verificationCode = verificationCode
+    }
+    
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <Identifo/PublicHeader.h>
+extension PhoneLogin: IdentifoRequest {
+    
+    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoFailure = IdentifoError
+    
+    public func identifoURLPath(in context: Context) -> String {
+        return "/auth/phone_login"
+    }
+    
+    public func identifoMethod(in context: Context) -> String {
+        return "POST"
+    }
+    
+    public func identifoBody(in context: Context) -> Data? {
+        var json: [String: Any] = [:]
+        
+        json["phone_number"] = phone
+        json["code"] = verificationCode
+        json["scopes"] = scopes
 
-
+        let data = try? Data(json: json)
+        return data
+    }
+    
+}

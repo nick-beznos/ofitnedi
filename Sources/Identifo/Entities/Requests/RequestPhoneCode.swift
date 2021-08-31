@@ -24,27 +24,23 @@
 
 import Foundation
 
-public struct ContinueWithPhoneVerification {
+struct RequestPhoneCode {
         
     public var phone: String
-    public var verificationCode: String
     
-    public var scopes: [String] = ["offline"]
-
-    public init(phone: String, verificationCode: String) {
+    public init(phone: String) {
         self.phone = phone
-        self.verificationCode = verificationCode
     }
     
 }
 
-extension ContinueWithPhoneVerification: IdentifoRequest {
+extension RequestPhoneCode: IdentifoRequest {
     
-    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoSuccess = EmptyIdentifoResponse
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/phone_login"
+        return "/auth/request_phone_code"
     }
     
     public func identifoMethod(in context: Context) -> String {
@@ -55,8 +51,6 @@ extension ContinueWithPhoneVerification: IdentifoRequest {
         var json: [String: Any] = [:]
         
         json["phone_number"] = phone
-        json["code"] = verificationCode
-        json["scopes"] = scopes
 
         let data = try? Data(json: json)
         return data

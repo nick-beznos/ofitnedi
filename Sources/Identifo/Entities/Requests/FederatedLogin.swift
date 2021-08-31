@@ -24,27 +24,27 @@
 
 import Foundation
 
-public struct SignUpWithUsername {
-        
-    public var username: String
-    public var password: String
+struct FederatedLogin {
     
+    public var authorizationCode: String
+    
+    public var provider: FederatedProvider
     public var scopes: [String] = ["offline"]
 
-    public init(username: String, password: String) {
-        self.username = username
-        self.password = password
+    public init(provider: FederatedProvider, authorizationCode: String) {
+        self.provider = provider
+        self.authorizationCode = authorizationCode
     }
     
 }
 
-extension SignUpWithUsername: IdentifoRequest {
+extension FederatedLogin: IdentifoRequest {
     
     public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/register"
+        return "/auth/federated"
     }
     
     public func identifoMethod(in context: Context) -> String {
@@ -54,8 +54,8 @@ extension SignUpWithUsername: IdentifoRequest {
     public func identifoBody(in context: Context) -> Data? {
         var json: [String: Any] = [:]
         
-        json["username"] = username
-        json["password"] = password
+        json["authorization_code"] = authorizationCode
+        json["provider"] = provider.rawValue
         json["scopes"] = scopes
         
         let data = try? Data(json: json)

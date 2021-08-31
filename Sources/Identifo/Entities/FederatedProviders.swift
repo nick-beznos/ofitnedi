@@ -1,7 +1,7 @@
 //
-//  Identifo
+//  IdentifoDemo
 //
-//  Copyright (C) 2019 MadAppGang Pty Ltd
+//  Copyright (C) 2021 MadAppGang Pty Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,42 +24,9 @@
 
 import Foundation
 
-public struct SignInWithUsername {
-        
-    public var username: String
-    public var password: String
-    
-    public var scopes: [String] = ["offline"]
-    
-    public init(username: String, password: String) {
-        self.username = username
-        self.password = password
-    }
-
-}
-
-extension SignInWithUsername: IdentifoRequest {
-    
-    public typealias IdentifoSuccess = AuthInfo
-    public typealias IdentifoFailure = IdentifoError
-    
-    public func identifoURLPath(in context: Context) -> String {
-        return "/auth/login"
-    }
-    
-    public func identifoMethod(in context: Context) -> String {
-        return "POST"
-    }
-    
-    public func identifoBody(in context: Context) -> Data? {
-        var json: [String: Any] = [:]
-        
-        json["username"] = username
-        json["password"] = password
-        json["scopes"] = scopes
-        
-        let data = try? Data(json: json)
-        return data
-    }
-    
+public enum FederatedProvider: String {
+    case apple
+    case google
+    case facebook
+    case twitter
 }

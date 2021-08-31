@@ -1,7 +1,7 @@
 //
 //  IdentifoDemo
 //
-//  Copyright (C) 2019 MadAppGang Pty Ltd
+//  Copyright (C) 2021 MadAppGang Pty Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,25 +24,23 @@
 
 import Foundation
 
-public struct ContinueWithApple {
+struct ResetPassword {
+        
+    public var email: String
     
-    public var authorizationCode: String
-    
-    public var scopes: [String] = ["offline"]
-    
-    public init(authorizationCode: String) {
-        self.authorizationCode = authorizationCode
+    public init(email: String) {
+        self.email = email
     }
     
 }
 
-extension ContinueWithApple: IdentifoRequest {
+extension ResetPassword: IdentifoRequest {
     
-    public typealias IdentifoSuccess = AuthInfo
+    public typealias IdentifoSuccess = EmptyIdentifoResponse
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/federated"
+        return "/auth/reset_password"
     }
     
     public func identifoMethod(in context: Context) -> String {
@@ -52,10 +50,8 @@ extension ContinueWithApple: IdentifoRequest {
     public func identifoBody(in context: Context) -> Data? {
         var json: [String: Any] = [:]
         
-        json["authorization_code"] = authorizationCode
-        json["provider"] = "apple"
-        json["scopes"] = scopes
-        
+        json["email"] = email
+
         let data = try? Data(json: json)
         return data
     }

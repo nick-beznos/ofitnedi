@@ -24,21 +24,27 @@
 
 import Foundation
 
-public struct SignOut {
-            
-    public init() {
+struct RegisterWithUsername {
         
+    public var username: String
+    public var password: String
+    
+    public var scopes: [String] = ["offline"]
+
+    public init(username: String, password: String) {
+        self.username = username
+        self.password = password
     }
     
 }
 
-extension SignOut: IdentifoRequest {
+extension RegisterWithUsername: IdentifoRequest {
     
-    public typealias IdentifoSuccess = EmptyIdentifoResponse
+    public typealias IdentifoSuccess = AuthInfo
     public typealias IdentifoFailure = IdentifoError
     
     public func identifoURLPath(in context: Context) -> String {
-        return "/auth/logout"
+        return "/auth/register"
     }
     
     public func identifoMethod(in context: Context) -> String {
@@ -48,9 +54,10 @@ extension SignOut: IdentifoRequest {
     public func identifoBody(in context: Context) -> Data? {
         var json: [String: Any] = [:]
         
-        json["device_token"] = context.deviceToken
-        json["refresh_token"] = context.refreshToken
-
+        json["username"] = username
+        json["password"] = password
+        json["scopes"] = scopes
+        
         let data = try? Data(json: json)
         return data
     }
